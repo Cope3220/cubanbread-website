@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow"/>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Portrait Shot List · La Segunda Central Bakery — cubanbread.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap">
+<style>
+:root{
+  --maroon:#6D0020;
+  --red:#EE3525;
+  --gold:#E5D660;
+  --crust:#9D6B3F;
+  --ink:#0d0d0d;
+  --paper:#F5F1E8;
+  --paper-2:#EDE7D6;
+  --rule:rgba(13,13,13,0.18);
+  --rule-strong:rgba(13,13,13,0.32);
+  --ink-dim:rgba(13,13,13,0.62);
+  --ink-mute:rgba(13,13,13,0.42);
+  --display:"Playfair Display", Georgia, serif;
+  --sans:"DM Sans", -apple-system, sans-serif;
+  --mono:"DM Mono", ui-monospace, monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#3a3a3a;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+@page { size: A4 portrait; margin: 0; }
+.page{
+  width:210mm;height:297mm;background:var(--paper);
+  margin:8mm auto;padding:13mm 14mm 26mm;
+  position:relative;page-break-after:always;break-after:page;
+  overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.4);
+  display:flex;flex-direction:column;
+}
+.page:last-child{page-break-after:auto;break-after:auto}
+.pg-head{display:flex;justify-content:space-between;align-items:baseline;
+  border-bottom:1px solid var(--rule-strong);padding-bottom:3mm;margin-bottom:4mm;
+  font-family:var(--mono);font-size:8pt;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-mute);flex-shrink:0;}
+.pg-head .l em{font-style:italic;color:var(--maroon);font-weight:500}
+.pg-foot{position:absolute;left:14mm;right:14mm;bottom:8mm;
+  display:flex;justify-content:space-between;font-family:var(--mono);font-size:7pt;
+  letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-mute);
+  border-top:1px solid var(--rule);padding-top:3mm;background:var(--paper);z-index:10;}
+.pg-foot em{font-style:italic;color:var(--maroon);font-weight:500}
+.pg-num{font-variant-numeric:tabular-nums}
+
+.h2{font-family:var(--display);font-weight:400;font-size:26pt;line-height:0.98;
+  letter-spacing:-0.02em;margin:0 0 3mm;color:var(--ink);}
+.h2 em{font-style:italic;color:var(--maroon)}
+.h2-eyebrow{font-family:var(--mono);font-size:8pt;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--red);margin:0 0 3mm;}
+.h2-eyebrow::before{content:"— "}
+.lede{font-family:var(--display);font-size:11pt;line-height:1.4;color:var(--ink-dim);
+  max-width:62ch;margin:0 0 6mm;}
+.lede em{font-style:italic;color:var(--maroon)}
+.body{font-size:8.5pt;line-height:1.5;color:rgba(13,13,13,0.78)}
+.body p{margin:0 0 2.5mm}
+.body em{font-style:italic;color:var(--maroon);font-weight:500}
+.body strong{color:var(--ink);font-weight:600}
+
+.shot-head{display:grid;grid-template-columns:1fr 30mm;gap:6mm;align-items:start;
+  margin-bottom:5mm;padding-bottom:5mm;border-bottom:1px solid var(--rule-strong);}
+.shot-num{font-family:var(--mono);font-size:7pt;letter-spacing:0.28em;text-transform:uppercase;color:var(--red);margin:0 0 2mm;}
+.shot-num::before{content:"— "}
+.shot-h{font-family:var(--display);font-weight:400;font-size:24pt;line-height:1.05;
+  letter-spacing:-0.015em;color:var(--ink);margin:0 0 2mm;}
+.shot-h em{font-style:italic;color:var(--maroon)}
+.shot-section{font-family:var(--mono);font-size:7.5pt;letter-spacing:0.14em;color:var(--ink-dim);}
+.shot-section b{color:var(--maroon);font-weight:500}
+.priority-tag{border:1px solid var(--rule-strong);padding:3mm;
+  font-family:var(--mono);font-size:7pt;letter-spacing:0.18em;text-transform:uppercase;
+  text-align:center;line-height:1.3;}
+.priority-tag.must{background:var(--red);color:var(--paper);border-color:var(--red)}
+.priority-tag.rec{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.priority-tag b{display:block;font-weight:500;font-size:8.5pt;margin-bottom:1mm}
+
+.shot-body{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:2mm}
+.shot-block{margin-bottom:5mm}
+.shot-block:last-child{margin-bottom:0}
+.shot-k{font-family:var(--mono);font-size:7pt;letter-spacing:0.26em;text-transform:uppercase;color:var(--maroon);margin:0 0 2mm;}
+.shot-v{font-size:9pt;line-height:1.55;color:rgba(13,13,13,0.82);margin:0;}
+.shot-v b{color:var(--ink);font-weight:600}
+.shot-v em{font-style:italic;color:var(--maroon);font-weight:500}
+
+.spec-grid{display:grid;grid-template-columns:auto 1fr;gap:1.5mm 4mm;
+  font-family:var(--mono);font-size:7.5pt;letter-spacing:0.06em;margin-top:2mm;}
+.spec-grid dt{color:var(--ink-mute);text-transform:uppercase;letter-spacing:0.18em;font-size:7pt}
+.spec-grid dd{margin:0;color:var(--ink);font-weight:500}
+
+.alt-box{background:var(--paper-2);padding:4mm 5mm;border-left:2px solid var(--maroon);margin-top:3mm;}
+.alt-box .shot-k{margin-bottom:1.5mm}
+.alt-box em.alt{font-family:var(--display);font-style:italic;font-size:9pt;line-height:1.5;color:var(--ink);font-weight:400;}
+
+.signoff{margin-top:auto;padding:5mm 7mm;background:var(--maroon);color:var(--paper);}
+.signoff .so-eye{font-family:var(--mono);font-size:7pt;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin:0 0 3mm;}
+.signoff .so-eye::before{content:"— "}
+.signoff h3{font-family:var(--display);font-weight:400;font-size:14pt;margin:0 0 2mm;letter-spacing:-0.01em;line-height:1.2;}
+.signoff h3 em{font-style:italic;color:var(--gold)}
+.signoff p{font-size:8.5pt;line-height:1.5;margin:0;color:rgba(245,241,232,0.85)}
+.signoff p em{font-style:italic;color:var(--gold);font-weight:500}
+
+.subhead{font-family:var(--mono);font-size:8.5pt;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--maroon);margin:0 0 3mm;border-bottom:1px solid var(--rule);padding-bottom:2mm;}
+.tone-list{font-family:var(--mono);font-size:8pt;letter-spacing:0.06em;list-style:none;padding:0;margin:0;}
+.tone-list li{padding:2mm 0;border-bottom:1px dotted var(--rule)}
+.tone-list li b{color:var(--maroon);font-weight:500;display:inline-block;min-width:14ch;text-transform:uppercase;letter-spacing:0.18em;font-size:7.5pt}
+
+@media print { body{background:white} .page{margin:0;box-shadow:none} }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 · OVERVIEW ============ -->
+<section class="page">
+  <div class="pg-head">
+    <span class="l"><em>La</em> Segunda · Portrait Shot List</span>
+    <span class="r">Extracted from Photo Brief v1.0</span>
+  </div>
+
+  <p class="h2-eyebrow">Two portraits · One session</p>
+  <h2 class="h2">A matched pair —<br><em>Anthony</em> &amp; <em>Giuseppe.</em></h2>
+
+  <p class="lede">Two modern editorial portraits captured back-to-back in a single afternoon at the bakery. Same photographer, same lighting setup, same visual language. <em>The only modern people-photography on the site</em> — they need to feel like they belong in the same publication.</p>
+
+  <div class="body" style="max-width:62ch">
+    <p><strong>Style reference.</strong> <em>Garden &amp; Gun</em> — Southern heritage portraiture, working-environment candor. <em>Not corporate-headshot style.</em> Real environment, working clothes, candid-but-considered.</p>
+    <p><strong>Location.</strong> Inside the bakery at 2512 N. 15th Street, Ybor City. Available surroundings: stone hearth, wooden bench, proofing trays, front counter, delivery rack.</p>
+    <p><strong>Light.</strong> Soft warm window light + ambient hearth/bakery glow. Color, modern, high-resolution.</p>
+    <p><strong>Color.</strong> Honey-warm midtones, deep but not crushed shadows. Bakery interior softly out of focus — background environment can stay <em>warm-cool mixed</em> for cinematic depth.</p>
+    <p><strong>Delivery.</strong> Graded JPGs at 2× target display size. No need for RAW or TIFF.</p>
+  </div>
+
+  <p class="subhead" style="margin-top:8mm">Session Logic</p>
+  <ul class="tone-list">
+    <li><b>One Afternoon</b> Both portraits captured in the same visit — minimize setup, maintain visual continuity.</li>
+    <li><b>Two Subjects</b> Anthony Copeland Moré (4th-gen owner) &amp; Giuseppe Bua (National Sales Manager).</li>
+    <li><b>One Lighting Setup</b> Soft warm window key, gentle ambient fill. Carry across both subjects.</li>
+    <li><b>Releases</b> Model releases signed at start of session.</li>
+  </ul>
+
+  <div class="signoff">
+    <p class="so-eye">Production Note</p>
+    <h3>The two faces need to look like they belong in the <em>same magazine spread.</em></h3>
+    <p>Schedule Anthony &amp; Giuseppe together. <em>One session, two portraits</em> — saves a half-day and gives the site a coherent human voice.</p>
+  </div>
+
+  <div class="pg-foot">
+    <span><em>cubanbread.com</em> · Portrait Shot List</span>
+    <span class="pg-num">Page 01 / 03</span>
+  </div>
+</section>
+
+<!-- ============ PAGE 2 · SHOT 19 — ANTHONY ============ -->
+<section class="page">
+  <div class="pg-head">
+    <span class="l"><em>La</em> Segunda · Portrait Shot List</span>
+    <span class="r">Shot 19 · Anthony Moré</span>
+  </div>
+
+  <p class="h2-eyebrow">Modern Editorial Portrait</p>
+  <h2 class="h2">The fourth<br><em>generation.</em></h2>
+  <p class="lede">The only modern face on the heritage page. Anchors the four-generation ledger and pairs as a matched set with <em>Shot 41 (Giuseppe Bua)</em>.</p>
+
+  <div class="shot-head" style="margin-top:6mm">
+    <div>
+      <p class="shot-num">Shot 19 · our-story.html · §05 Generations</p>
+      <h3 class="shot-h">Generation 4 · <em>Anthony Copeland Moré</em></h3>
+      <p class="shot-section">Modern editorial portrait · the <b>only modern face</b> on this page</p>
+    </div>
+    <div class="priority-tag must"><b>🔴 Must</b>Portrait Session</div>
+  </div>
+
+  <div class="shot-body">
+    <div>
+      <div class="shot-block">
+        <p class="shot-k">Subject &amp; Composition</p>
+        <p class="shot-v">Modern editorial portrait of <b>Anthony Copeland Moré</b>, fourth-generation owner. Working environment — at the hearth, on the floor, at the bench. <em>Not corporate-headshot style.</em> Garden &amp; Gun energy: candid, slight smile or pensive-serious, hands floured, stone hearth visible behind. ¾ or near-environmental wide.</p>
+      </div>
+      <div class="shot-block">
+        <p class="shot-k">Lighting &amp; Mood</p>
+        <p class="shot-v">Soft warm window light + ambient hearth glow. Color portrait, modern, high-res. Should sit comfortably next to <b>Shot 41 (Giuseppe)</b> — one shoot, two portraits, matched pair.</p>
+      </div>
+    </div>
+    <div>
+      <div class="shot-block">
+        <p class="shot-k">Specs</p>
+        <dl class="spec-grid">
+          <dt>Dimensions</dt><dd>800 × 600 px (4:3, deliver 2×)</dd>
+          <dt>Orientation</dt><dd>Horizontal landscape</dd>
+          <dt>Type</dt><dd>People · Modern editorial</dd>
+          <dt>Section</dt><dd>.gen .gen-photo · 4th-gen card</dd>
+          <dt>Schedule</dt><dd>Pair w/ Shot 41 (Giuseppe)</dd>
+        </dl>
+      </div>
+      <div class="alt-box">
+        <p class="shot-k">Alt Text</p>
+        <em class="alt">Anthony Copeland Moré, fourth-generation owner of La Segunda, photographed inside the bakery beside the stone hearth.</em>
+      </div>
+    </div>
+  </div>
+
+  <div class="pg-foot">
+    <span><em>cubanbread.com</em> · Portrait Shot List</span>
+    <span class="pg-num">Page 02 / 03</span>
+  </div>
+</section>
+
+<!-- ============ PAGE 3 · SHOT 41 — GIUSEPPE ============ -->
+<section class="page">
+  <div class="pg-head">
+    <span class="l"><em>La</em> Segunda · Portrait Shot List</span>
+    <span class="r">Shot 41 · Giuseppe Bua</span>
+  </div>
+
+  <p class="h2-eyebrow">Modern Editorial Portrait</p>
+  <h2 class="h2">The person<br><em>on the line.</em></h2>
+  <p class="lede">A face for the contact page's biggest promise: <em>"Direct access. Real responses. Within 24 hours."</em> Matched pair with <em>Shot 19 (Anthony Moré)</em>.</p>
+
+  <div class="shot-head" style="margin-top:6mm">
+    <div>
+      <p class="shot-num">Shot 41 · contact.html · §02 Giuseppe Card</p>
+      <h3 class="shot-h">Giuseppe <em>Bua</em> · National Sales Manager</h3>
+      <p class="shot-section">Editorial portrait · <b>matched pair with Shot 19 (Anthony Moré)</b></p>
+    </div>
+    <div class="priority-tag rec"><b>✅ Approved</b>Portrait Session</div>
+  </div>
+
+  <div class="shot-body">
+    <div>
+      <div class="shot-block">
+        <p class="shot-k">Subject &amp; Composition</p>
+        <p class="shot-v">Editorial portrait of <b>Giuseppe Bua</b>, National Sales Manager. Inside the bakery — at the bench, at the front counter, or beside a delivery rack. <em>Not corporate-headshot style.</em> Same Garden &amp; Gun energy as Shot 19: real environment, working clothes, candid-but-considered. Slight smile or steady direct gaze into camera. Bakery interior softly out of focus behind. ¾ shoulder-up or near-tight head-and-shoulders.</p>
+      </div>
+      <div class="shot-block">
+        <p class="shot-k">Lighting &amp; Mood</p>
+        <p class="shot-v">Soft warm window light from camera-left, gentle bakery ambient fill. Color portrait, modern. <em>Must sit comfortably next to Shot 19</em> — same photographer, same session, same lighting language. <b>The two portraits are the only modern people-photography on the site; they need to feel like a matched pair.</b></p>
+      </div>
+    </div>
+    <div>
+      <div class="shot-block">
+        <p class="shot-k">Specs</p>
+        <dl class="spec-grid">
+          <dt>Dimensions</dt><dd>800 × 1000 px (4:5, deliver 2×)</dd>
+          <dt>Orientation</dt><dd>Vertical portrait</dd>
+          <dt>Type</dt><dd>People · Modern editorial</dd>
+          <dt>Section</dt><dd>.giuseppe contact card</dd>
+          <dt>Schedule</dt><dd>Pair w/ Shot 19 (Anthony)</dd>
+        </dl>
+      </div>
+      <div class="alt-box">
+        <p class="shot-k">Alt Text</p>
+        <em class="alt">Editorial portrait of Giuseppe Bua, National Sales Manager at La Segunda, photographed inside the Ybor City bakery.</em>
+      </div>
+    </div>
+  </div>
+
+  <div class="pg-foot">
+    <span><em>cubanbread.com</em> · Portrait Shot List</span>
+    <span class="pg-num">Page 03 / 03</span>
+  </div>
+</section>
+
+</body>
+</html>

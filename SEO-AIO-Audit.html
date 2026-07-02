@@ -1,0 +1,926 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SEO / AIO / AI-Search Audit — cubanbread.com</title>
+<meta name="robots" content="noindex, nofollow"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap">
+<style>
+:root{
+  --maroon:#6D0020;
+  --red:#EE3525;
+  --gold:#E5D660;
+  --pewter:#545859;
+  --crust:#9D6B3F;
+  --ink:#0d0d0d;
+  --ink-2:#141414;
+  --ink-3:#1a1a1a;
+  --rule:rgba(245,241,232,0.12);
+  --rule-strong:rgba(245,241,232,0.22);
+  --cream:#F5F1E8;
+  --cream-dim:rgba(245,241,232,0.72);
+  --cream-mute:rgba(245,241,232,0.55);
+  --green:#7BA05B;
+  --amber:#E5B860;
+  --display:"Playfair Display", Georgia, serif;
+  --sans:"DM Sans", -apple-system, system-ui, sans-serif;
+  --mono:"DM Mono", ui-monospace, monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--ink);color:var(--cream);font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;letter-spacing:0.01em}
+body{overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%;display:block}
+
+/* ============ HEADER ============ */
+.doc-head{
+  padding:120px 64px 64px;border-bottom:1px solid var(--rule);
+  position:relative;background:var(--ink);
+}
+.doc-head::after{
+  content:"";position:absolute;left:64px;right:64px;bottom:-1px;height:1px;
+  background:linear-gradient(90deg, var(--red) 0%, var(--red) 8%, transparent 8%);
+}
+.crumbs{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.26em;text-transform:uppercase;
+  color:var(--cream-mute);margin-bottom:36px;
+}
+.crumbs b{color:var(--red);font-weight:500;margin-right:14px}
+.doc-head-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:80px;align-items:end}
+.doc-eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--red);margin:0 0 22px;
+}
+h1.doc-h1{
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(54px,6.5vw,108px);line-height:0.96;letter-spacing:-0.025em;
+  margin:0 0 28px;color:var(--cream);
+}
+h1.doc-h1 em{font-style:italic;color:var(--red);font-weight:400}
+.doc-intro{
+  font-family:var(--display);font-size:22px;line-height:1.45;font-weight:400;
+  color:var(--cream-dim);max-width:48ch;margin:0;
+}
+.doc-intro em{font-style:italic;color:var(--cream)}
+.doc-meta{
+  display:flex;flex-direction:column;gap:18px;
+  border-left:1px solid var(--rule-strong);padding-left:32px;padding-bottom:8px;
+}
+.doc-meta-row{display:flex;flex-direction:column;gap:5px}
+.doc-meta-k{font-family:var(--mono);font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--cream-mute)}
+.doc-meta-v{font-family:var(--display);font-size:20px;color:var(--cream);font-weight:500}
+.doc-meta-v em{font-style:italic;color:var(--red);font-weight:400}
+
+/* ============ SCORE BAR ============ */
+.scores{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border-bottom:1px solid var(--rule);background:var(--ink-2);
+}
+.score{padding:32px 36px;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:6px}
+.score:last-child{border-right:0}
+.score-k{font-family:var(--mono);font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--cream-mute)}
+.score-v{font-family:var(--display);font-size:44px;line-height:1;color:var(--cream);font-weight:500;letter-spacing:-0.02em}
+.score-v em{font-style:italic;color:var(--red);font-weight:400}
+.score-sub{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--cream-mute);margin-top:4px}
+
+/* ============ SECTIONS ============ */
+.sec{padding:96px 64px;border-bottom:1px solid var(--rule)}
+.sec-head{
+  display:grid;grid-template-columns:160px 1fr;gap:56px;
+  margin-bottom:56px;align-items:start;
+}
+.sec-num{font-family:var(--mono);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--cream-mute);padding-top:14px}
+.sec-num b{color:var(--red);font-weight:400;margin-right:10px}
+.sec-title{
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(36px,4.5vw,68px);line-height:1.02;letter-spacing:-0.02em;
+  margin:0;color:var(--cream);max-width:18ch;
+}
+.sec-title em{font-style:italic;color:var(--red)}
+.sec-lede{
+  font-family:var(--display);font-size:21px;line-height:1.5;color:var(--cream-dim);
+  max-width:60ch;margin:14px 0 0;
+}
+.sec-lede em{font-style:italic;color:var(--cream)}
+
+/* ============ CHECKLIST GRID ============ */
+.check-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.check{
+  padding:24px 28px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  display:grid;grid-template-columns:36px 1fr auto;gap:18px;align-items:start;
+  background:var(--ink);
+}
+.check-mark{
+  width:22px;height:22px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  margin-top:2px;
+}
+.check-mark.ok{background:var(--green);color:var(--ink)}
+.check-mark.warn{background:var(--amber);color:var(--ink)}
+.check-mark.bad{background:var(--red);color:var(--cream)}
+.check-mark.partial{background:rgba(229,184,96,0.18);color:var(--amber);border:1px solid var(--amber)}
+.check-body{display:flex;flex-direction:column;gap:6px}
+.check-name{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--cream);letter-spacing:0}
+.check-note{font-family:var(--sans);font-size:13px;line-height:1.55;color:var(--cream-dim)}
+.check-tag{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--cream-mute);align-self:start;padding-top:4px;
+}
+
+/* ============ ISSUE BLOCKS ============ */
+.issue-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--rule)}
+.issue{
+  display:grid;grid-template-columns:64px 1fr;gap:32px;
+  padding:36px 0;border-bottom:1px solid var(--rule);
+  position:relative;
+}
+.issue-no{
+  font-family:var(--display);font-style:italic;font-size:36px;line-height:1;
+  color:var(--red);padding-top:6px;
+}
+.issue-body{display:flex;flex-direction:column;gap:14px}
+.issue-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.issue-title{
+  font-family:var(--display);font-size:26px;line-height:1.15;font-weight:500;
+  color:var(--cream);letter-spacing:-0.005em;margin:0;
+}
+.issue-title em{font-style:italic;color:var(--red);font-weight:400}
+.sev{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:0.24em;text-transform:uppercase;
+  padding:5px 10px;background:var(--ink-3);color:var(--cream-mute);
+  border:1px solid var(--rule);
+}
+.sev.crit{color:var(--red);border-color:rgba(238,53,37,0.5);background:rgba(238,53,37,0.08)}
+.sev.high{color:var(--amber);border-color:rgba(229,184,96,0.5);background:rgba(229,184,96,0.06)}
+.sev.med{color:var(--cream-dim);border-color:var(--rule-strong)}
+.sev.low{color:var(--cream-mute)}
+.where{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--cream-mute);
+}
+.where b{color:var(--cream);font-weight:500}
+.issue-desc{font-size:15px;line-height:1.65;color:var(--cream-dim);margin:0;max-width:78ch}
+.issue-desc strong{color:var(--cream);font-weight:500}
+
+/* ============ FIX/CODE BLOCKS ============ */
+.fix{
+  margin-top:6px;background:var(--ink-2);border:1px solid var(--rule);
+  border-left:3px solid var(--red);
+  padding:18px 22px;display:flex;flex-direction:column;gap:8px;
+}
+.fix-label{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:0.26em;text-transform:uppercase;
+  color:var(--red);font-weight:500;
+}
+.fix-label.ok{color:var(--green)}
+.fix-label.bad{color:var(--red)}
+pre.code{
+  font-family:var(--mono);font-size:12.5px;line-height:1.6;color:var(--cream);
+  background:var(--ink-3);padding:14px 18px;margin:6px 0 0;
+  overflow-x:auto;border:1px solid var(--rule);
+  white-space:pre;tab-size:2;
+}
+pre.code .c{color:var(--cream-mute)}
+pre.code .k{color:var(--gold)}
+pre.code .s{color:#9DD18E}
+pre.code .del{color:var(--red);text-decoration:line-through;opacity:0.65}
+pre.code .add{color:#9DD18E}
+code.inline{
+  font-family:var(--mono);font-size:12.5px;color:var(--cream);
+  background:var(--ink-3);padding:2px 6px;border:1px solid var(--rule);
+}
+.fix-row{display:grid;grid-template-columns:80px 1fr;gap:18px;align-items:start;font-size:14px;line-height:1.6}
+.fix-row b{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--cream-mute);font-weight:400;padding-top:3px}
+.fix-row p{margin:0;color:var(--cream-dim)}
+.fix-row p em{font-style:italic;color:var(--cream)}
+
+/* ============ TWO-COL CONTENT (cosmetics) ============ */
+.cosmetic{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.cosm{
+  padding:28px 32px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  display:flex;flex-direction:column;gap:10px;
+}
+.cosm h4{
+  font-family:var(--display);font-size:22px;font-weight:500;margin:0;color:var(--cream);letter-spacing:-0.005em;
+}
+.cosm h4 em{font-style:italic;color:var(--red);font-weight:400}
+.cosm-tag{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--amber);
+}
+.cosm p{font-size:14px;line-height:1.65;color:var(--cream-dim);margin:0}
+.cosm p strong{color:var(--cream)}
+.cosm code{font-family:var(--mono);font-size:12px;color:var(--gold);background:var(--ink-3);padding:1px 5px;border:1px solid var(--rule)}
+
+/* ============ FAQ ANSWER BLOCK ============ */
+.qa{
+  border-top:1px solid var(--rule);padding:24px 0;
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;
+}
+.qa-q{
+  font-family:var(--display);font-size:22px;line-height:1.3;font-weight:500;
+  color:var(--cream);margin:0;
+}
+.qa-q em{font-style:italic;color:var(--red);font-weight:400}
+.qa-a{font-size:14.5px;line-height:1.65;color:var(--cream-dim);margin:0}
+.qa-a em{font-style:italic;color:var(--cream)}
+
+/* ============ FOOT ============ */
+.foot{padding:64px 64px 48px;background:var(--ink-2)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:56px;align-items:end}
+.foot-h{
+  font-family:var(--display);font-weight:400;font-size:44px;line-height:1.05;letter-spacing:-0.015em;
+  margin:0;color:var(--cream);
+}
+.foot-h em{font-style:italic;color:var(--red)}
+.foot-p{font-size:14px;line-height:1.6;color:var(--cream-dim);max-width:48ch;margin:14px 0 0}
+.foot-meta{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--cream-mute);text-align:right;line-height:1.8;
+}
+.foot-meta b{color:var(--cream);font-weight:500}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:960px){
+  .doc-head{padding:88px 28px 48px}
+  .doc-head-grid{grid-template-columns:1fr;gap:36px}
+  .doc-meta{border-left:0;padding-left:0;border-top:1px solid var(--rule-strong);padding-top:20px}
+  .scores{grid-template-columns:repeat(2,1fr)}
+  .score{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .score:nth-child(even){border-right:0}
+  .sec{padding:64px 28px}
+  .sec-head{grid-template-columns:1fr;gap:18px;margin-bottom:36px}
+  .check-grid{grid-template-columns:1fr}
+  .issue{grid-template-columns:1fr;gap:14px}
+  .cosmetic{grid-template-columns:1fr}
+  .qa{grid-template-columns:1fr;gap:14px}
+  .foot{padding:48px 28px 32px}
+  .foot-grid{grid-template-columns:1fr;gap:28px}
+  .foot-meta{text-align:left}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="doc-head" data-screen-label="00 Header">
+  <nav class="crumbs"><b>cubanbread.com</b><span>Pre-Launch · SEO + AIO + AI Search Audit</span></nav>
+  <div class="doc-head-grid">
+    <div>
+      <p class="doc-eyebrow">Audit · MMXXVI</p>
+      <h1 class="doc-h1">A site that <em>tastes</em> right.<br>Now make it <em>findable.</em></h1>
+      <p class="doc-intro">
+        The site is <em>visually mature and structurally honest</em> — strong schema, real canonicals, clean sitemap, no rogue noindex. The remaining gaps are about <em>making a beautiful narrative legible to search engines and to AI answer engines</em> that don't read italics.
+      </p>
+    </div>
+    <div class="doc-meta">
+      <div class="doc-meta-row"><span class="doc-meta-k">Pages reviewed</span><span class="doc-meta-v"><em>9</em> + ES variants</span></div>
+      <div class="doc-meta-row"><span class="doc-meta-k">Overall verdict</span><span class="doc-meta-v">Launchable, w/ fixes</span></div>
+      <div class="doc-meta-row"><span class="doc-meta-k">Date</span><span class="doc-meta-v">May 2026</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== SCORE STRIP ===================== -->
+<section class="scores" data-screen-label="01 Scores">
+  <div class="score">
+    <span class="score-k">— Technical SEO</span>
+    <span class="score-v"><em>B+</em></span>
+    <span class="score-sub">Canonicals · sitemap · robots all clean</span>
+  </div>
+  <div class="score">
+    <span class="score-k">— Schema / Structured Data</span>
+    <span class="score-v"><em>A−</em></span>
+    <span class="score-sub">Excellent depth · 2 missing types</span>
+  </div>
+  <div class="score">
+    <span class="score-k">— Content / On-Page</span>
+    <span class="score-v"><em>B</em></span>
+    <span class="score-sub">Strong narrative · weak Q&amp;A surface</span>
+  </div>
+  <div class="score">
+    <span class="score-k">— AI Search Readiness</span>
+    <span class="score-v"><em>C+</em></span>
+    <span class="score-sub">Missing direct answers &amp; alt text</span>
+  </div>
+</section>
+
+<!-- ===================== EXECUTIVE SNAPSHOT ===================== -->
+<section class="sec" data-screen-label="02 Snapshot">
+  <div class="sec-head">
+    <div class="sec-num"><b>01</b>Executive Snapshot</div>
+    <div>
+      <h2 class="sec-title">What the site does <em>right</em>. What it doesn't.</h2>
+      <p class="sec-lede">In one read: a launchable site with one of the better small-business schema implementations I've seen, weakened by a few content-side gaps that prevent ChatGPT, Perplexity, and Google AI Overviews from quoting it correctly.</p>
+    </div>
+  </div>
+
+  <div class="check-grid">
+    <!-- DONE / OK -->
+    <div class="check"><div class="check-mark ok">✓</div><div class="check-body"><div class="check-name">Business name surfaced</div><div class="check-note">"La Segunda Central Bakery" in every &lt;title&gt;, OG, schema, and footer.</div></div><div class="check-tag">OK</div></div>
+    <div class="check"><div class="check-mark ok">✓</div><div class="check-body"><div class="check-name">Founded date (1915)</div><div class="check-note">In schema <code class="inline">foundingDate</code>, body copy, timeline, footer. Roman numerals are decorative only.</div></div><div class="check-tag">OK</div></div>
+    <div class="check"><div class="check-mark ok">✓</div><div class="check-body"><div class="check-name">Tampa / Ybor City heritage</div><div class="check-note">"Ybor City" appears on every page; full timeline on homepage + dedicated Our Story.</div></div><div class="check-tag">OK</div></div>
+    <div class="check"><div class="check-mark partial">~</div><div class="check-body"><div class="check-name">Cuban bread authority claim</div><div class="check-note">Asserted as "the first name" and "America's original" — but no &lt;h1&gt; on homepage actually says it. AI engines read H1 hardest.</div></div><div class="check-tag">PARTIAL</div></div>
+    <div class="check"><div class="check-mark partial">~</div><div class="check-body"><div class="check-name">Retail bakery offerings</div><div class="check-note">Retail storefront on 15th St. mentioned in timeline, never in nav or as a section. No hours, no "Visit Us" page.</div></div><div class="check-tag">PARTIAL</div></div>
+    <div class="check"><div class="check-mark ok">✓</div><div class="check-body"><div class="check-name">Wholesale Cuban bread offering</div><div class="check-note">Strongest part of the site. Distribution.html + Products.html + Giuseppe CTA on every page.</div></div><div class="check-tag">OK</div></div>
+    <div class="check"><div class="check-mark partial">~</div><div class="check-body"><div class="check-name">Locations &amp; service area</div><div class="check-note">Service area enumerated (20 states in schema). One physical location in schema; timeline mentions "expanding to four locations" — those four are not documented.</div></div><div class="check-tag">PARTIAL</div></div>
+    <div class="check"><div class="check-mark ok">✓</div><div class="check-body"><div class="check-name">Press / trust signals</div><div class="check-note">"As Featured In" with seven outbound links + Article schema on /blog/. Excellent.</div></div><div class="check-tag">OK</div></div>
+    <div class="check"><div class="check-mark ok">✓</div><div class="check-body"><div class="check-name">Contact &amp; conversion paths</div><div class="check-note">Giuseppe + phone + email + form, repeated. ContactPoint schema. 24-hr promise.</div></div><div class="check-tag">OK</div></div>
+    <div class="check"><div class="check-mark ok">✓</div><div class="check-body"><div class="check-name">H1 / H2 structure</div><div class="check-note">Each page has exactly one &lt;h1&gt;. Section headings use &lt;h2&gt;. Products and timeline use &lt;h3&gt;/&lt;h4&gt; sensibly.</div></div><div class="check-tag">OK</div></div>
+    <div class="check"><div class="check-mark ok">✓</div><div class="check-body"><div class="check-name">LocalBusiness / Bakery schema</div><div class="check-note">@type "Bakery" on home, our-story, distribution, contact. Address, geo, telephone, email, founder, foundingDate, areaServed all present.</div></div><div class="check-tag">OK</div></div>
+    <div class="check"><div class="check-mark ok">✓</div><div class="check-body"><div class="check-name">Product schema</div><div class="check-note">ItemList with 7 Product entries on /products.html — pack size, shelf life, allergens, item numbers.</div></div><div class="check-tag">OK</div></div>
+    <div class="check"><div class="check-mark partial">~</div><div class="check-body"><div class="check-name">FAQ schema</div><div class="check-note">Present on /contact.html only. Should also be on /, /products.html, and /our-story.html — these are the pages AI engines crawl for direct answers.</div></div><div class="check-tag">PARTIAL</div></div>
+    <div class="check"><div class="check-mark partial">~</div><div class="check-body"><div class="check-name">Breadcrumb schema</div><div class="check-note">Present on /products, /distribution, /contact. <strong>Missing on /our-story.html and /blog/*</strong>.</div></div><div class="check-tag">PARTIAL</div></div>
+    <div class="check"><div class="check-mark bad">✕</div><div class="check-body"><div class="check-name">Organization + WebSite schema</div><div class="check-note">Neither type emitted anywhere. <code class="inline">@type:"Organization"</code> with a logo URL is what feeds Google's Knowledge Panel. <code class="inline">WebSite</code> + <code class="inline">SearchAction</code> enables sitelinks search box.</div></div><div class="check-tag">MISSING</div></div>
+    <div class="check"><div class="check-mark bad">✕</div><div class="check-body"><div class="check-name">Descriptive alt text</div><div class="check-note">Hero photo on homepage is <code class="inline">alt=""</code>. Product cards are CSS-gradient placeholders with no real images. Brand logo wordmark is alt-text correct.</div></div><div class="check-tag">MISSING</div></div>
+    <div class="check"><div class="check-mark warn">!</div><div class="check-body"><div class="check-name">Page titles &amp; meta descriptions</div><div class="check-note">All pages have both. Homepage description is <strong>530+ chars</strong> (Google truncates ~155–160). Homepage title omits "Tampa" — costs local-search relevance.</div></div><div class="check-tag">TIGHTEN</div></div>
+    <div class="check"><div class="check-mark ok">✓</div><div class="check-body"><div class="check-name">Crawlable body copy</div><div class="check-note">No content trapped in images, no JS-only rendering. The hero H1 is split across &lt;span&gt; lines but still parses cleanly.</div></div><div class="check-tag">OK</div></div>
+    <div class="check"><div class="check-mark ok">✓</div><div class="check-body"><div class="check-name">XML sitemap</div><div class="check-note">Present, valid, references all 8 primary URLs. <strong>Missing the 2 Spanish pages</strong> (/es/contact.html, /es/distribution.html).</div></div><div class="check-tag">OK</div></div>
+    <div class="check"><div class="check-mark ok">✓</div><div class="check-body"><div class="check-name">robots.txt</div><div class="check-note">Allow all, sitemap referenced. Clean.</div></div><div class="check-tag">OK</div></div>
+    <div class="check"><div class="check-mark ok">✓</div><div class="check-body"><div class="check-name">No accidental noindex</div><div class="check-note">Zero <code class="inline">noindex</code> directives across all production pages. Confirmed.</div></div><div class="check-tag">OK</div></div>
+    <div class="check"><div class="check-mark warn">!</div><div class="check-body"><div class="check-name">Internal linking between core pages</div><div class="check-note">Nav links all five — good. But homepage footer points "Our Story" and "Four Generations" to <code class="inline">#story</code> (anchor) instead of <code class="inline">our-story.html</code>. "Careers" footer link goes to <code class="inline">#contact</code> — broken intent.</div></div><div class="check-tag">FIX</div></div>
+    <div class="check"><div class="check-mark warn">!</div><div class="check-body"><div class="check-name">hreflang declarations</div><div class="check-note">Inline <code class="inline">hreflang="es"</code> on footer links — fine for users, not for Google. Needs <code class="inline">&lt;link rel="alternate" hreflang="..."&gt;</code> pairs in &lt;head&gt; of both EN and ES pages.</div></div><div class="check-tag">FIX</div></div>
+    <div class="check"><div class="check-mark warn">!</div><div class="check-body"><div class="check-name">Internal-only brief pages exposed</div><div class="check-note"><code class="inline">/motion-brief.html</code>, <code class="inline">/photo-brief.html</code>, <code class="inline">/portrait-shot-list.html</code> are crawlable. They aren't in the sitemap but Google can still discover them. Add <code class="inline">noindex</code> or disallow in robots.txt.</div></div><div class="check-tag">FIX</div></div>
+  </div>
+</section>
+
+<!-- ===================== MUST FIX ===================== -->
+<section class="sec" data-screen-label="03 Must Fix">
+  <div class="sec-head">
+    <div class="sec-num"><b>02</b>Must-fix before launch</div>
+    <div>
+      <h2 class="sec-title">Eight items.<br>None take more than <em>an hour</em>.</h2>
+      <p class="sec-lede">These are the gaps that will actually cost rankings or AI mentions on day one. Ranked by impact, not effort.</p>
+    </div>
+  </div>
+
+  <div class="issue-list">
+
+    <!-- MUST-FIX 01 -->
+    <article class="issue">
+      <div class="issue-no">01</div>
+      <div class="issue-body">
+        <div class="issue-head">
+          <h3 class="issue-title">Homepage <em>&lt;title&gt;</em> doesn't say "Tampa"</h3>
+          <span class="sev crit">Critical</span>
+          <span class="where">file: <b>index.html</b> · line 6</span>
+        </div>
+        <p class="issue-desc">The single highest-leverage local-SEO lever for a Tampa-Ybor bakery is "Tampa" in the homepage title. Right now the homepage targets "Wholesale Cuban Bread Since 1915" but not "Cuban Bread Tampa" — a phrase searched roughly 10–15× more often. Title is also 70+ chars; aim for ≤60.</p>
+        <div class="fix">
+          <div class="fix-label bad">Current</div>
+          <pre class="code">&lt;title&gt;La Segunda Central Bakery — Wholesale Cuban Bread Since 1915&lt;/title&gt;</pre>
+          <div class="fix-label ok">Recommended</div>
+          <pre class="code">&lt;title&gt;La Segunda · Authentic Cuban Bread in Tampa Since 1915&lt;/title&gt;</pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- MUST-FIX 02 -->
+    <article class="issue">
+      <div class="issue-no">02</div>
+      <div class="issue-body">
+        <div class="issue-head">
+          <h3 class="issue-title">Homepage <em>meta description</em> is too long</h3>
+          <span class="sev crit">Critical</span>
+          <span class="where">file: <b>index.html</b> · line 7</span>
+        </div>
+        <p class="issue-desc">Current description is 530+ characters. Google truncates at ~155–160. Everything after "active in 18 states today" is invisible in SERPs. Rewrite as a tight, lead-with-place-and-claim sentence that AI Overviews can lift wholesale.</p>
+        <div class="fix">
+          <div class="fix-label ok">Recommended (153 chars)</div>
+          <pre class="code">&lt;meta name="description" content="Authentic Cuban bread baked in Ybor City,
+Tampa since 1915. Family-owned, 4th generation. Wholesale &amp; foodservice
+in 35+ states — direct line to Giuseppe."/&gt;</pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- MUST-FIX 03 -->
+    <article class="issue">
+      <div class="issue-no">03</div>
+      <div class="issue-body">
+        <div class="issue-head">
+          <h3 class="issue-title">Hero image is <em>alt=""</em></h3>
+          <span class="sev high">High</span>
+          <span class="where">file: <b>index.html</b> · line 914</span>
+        </div>
+        <p class="issue-desc">The single biggest image on the homepage is decorative-marked. Google Images, image-based AI search, and screen readers all lose the signal. The image carries the brand promise; the alt should too.</p>
+        <div class="fix">
+          <div class="fix-label bad">Current</div>
+          <pre class="code">&lt;div class="hero-photo-bg"&gt;&lt;img src="assets/hero-bread-v2.jpg" alt=""/&gt;&lt;/div&gt;</pre>
+          <div class="fix-label ok">Recommended</div>
+          <pre class="code">&lt;div class="hero-photo-bg"&gt;
+  &lt;img src="assets/hero-bread-v2.jpg"
+       alt="A row of La Segunda Cuban bread loaves with the signature
+            palmetto-leaf split, fresh from the oven in Ybor City, Tampa."/&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- MUST-FIX 04 -->
+    <article class="issue">
+      <div class="issue-no">04</div>
+      <div class="issue-body">
+        <div class="issue-head">
+          <h3 class="issue-title">Product cards have <em>no real images</em></h3>
+          <span class="sev high">High</span>
+          <span class="where">file: <b>index.html, products.html</b></span>
+        </div>
+        <p class="issue-desc">All seven product cards (Cuban Bread 18″/36″, Honey Wheat, Media Noche, Coca Buns, Bucket, Hoagies, Basket) render as CSS-gradient placeholders with class names like <code class="inline">prod-img-warm</code>. Meanwhile, the Product schema points to <code class="inline">/assets/products/cuban-18.jpg</code> — a URL that likely 404s. This is the single biggest miss for Google Images, Pinterest, and AI-engine product carousels. Replace with real photos (your photo brief is already specced).</p>
+        <div class="fix">
+          <div class="fix-label">Action</div>
+          <div class="fix-row"><b>Photos</b><p>Shoot the 7 product hero images (you have the brief). 1600×1000 JPG/WebP, ≤200 KB.</p></div>
+          <div class="fix-row"><b>Filenames</b><p>Match the schema URLs already declared: <code class="inline">cuban-18.jpg</code>, <code class="inline">cuban-36.jpg</code>, <code class="inline">honey-wheat.jpg</code>, <code class="inline">media-noche.jpg</code>, <code class="inline">coca-buns.jpg</code>, <code class="inline">bucket-breads.jpg</code>, <code class="inline">hoagies.jpg</code>, <code class="inline">basket-bread.jpg</code></p></div>
+          <div class="fix-row"><b>Alt text</b><p>Pattern: <em>"La Segunda [Product] — [size/pack] — [defining visual detail]"</em> e.g., <em>"La Segunda Authentic Cuban Bread, 36-inch loaf, palmetto-leaf split down the center, golden crust."</em></p></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- MUST-FIX 05 -->
+    <article class="issue">
+      <div class="issue-no">05</div>
+      <div class="issue-body">
+        <div class="issue-head">
+          <h3 class="issue-title">No <em>Organization</em> or <em>WebSite</em> schema</h3>
+          <span class="sev high">High</span>
+          <span class="where">file: <b>index.html</b> &lt;head&gt;</span>
+        </div>
+        <p class="issue-desc">You have great <code class="inline">Bakery</code> schema, but Google's Knowledge Panel and the sitelinks search box are driven by <code class="inline">Organization</code> + <code class="inline">WebSite</code>. Add both to the homepage only. The Organization @id should link back to the Bakery @id so they reconcile as the same entity.</p>
+        <div class="fix">
+          <div class="fix-label ok">Add to index.html &lt;head&gt;</div>
+          <pre class="code">&lt;script type="application/ld+json"&gt;
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"Organization",
+      "@id":"https://www.cubanbread.com/#org",
+      "name":"La Segunda Central Bakery",
+      "alternateName":["La Segunda","La Segunda Wholesale"],
+      "url":"https://www.cubanbread.com/",
+      "logo":"https://www.cubanbread.com/assets/logo-word.png",
+      "foundingDate":"1915",
+      "founder":{"@type":"Person","name":"Juan Moré"},
+      "sameAs":[
+        "https://www.instagram.com/lasegundabakery/",
+        "https://www.facebook.com/LaSegundaBakery/",
+        "https://x.com/LaSegundaBakery"
+      ],
+      "mainEntityOfPage":{"@id":"https://www.cubanbread.com/#bakery"}
+    },
+    {
+      "@type":"WebSite",
+      "@id":"https://www.cubanbread.com/#website",
+      "url":"https://www.cubanbread.com/",
+      "name":"La Segunda Central Bakery",
+      "publisher":{"@id":"https://www.cubanbread.com/#org"},
+      "inLanguage":"en-US",
+      "potentialAction":{
+        "@type":"SearchAction",
+        "target":"https://www.cubanbread.com/?q={search_term_string}",
+        "query-input":"required name=search_term_string"
+      }
+    }
+  ]
+}
+&lt;/script&gt;</pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- MUST-FIX 06 -->
+    <article class="issue">
+      <div class="issue-no">06</div>
+      <div class="issue-body">
+        <div class="issue-head">
+          <h3 class="issue-title">Homepage footer links go to <em>anchors</em>, not pages</h3>
+          <span class="sev high">High</span>
+          <span class="where">file: <b>index.html</b> · lines 1450–1465</span>
+        </div>
+        <p class="issue-desc">"Our Story", "Four Generations", "Contact", and "Careers" in the footer all point to <code class="inline">#story</code> or <code class="inline">#contact</code> instead of the real pages (<code class="inline">our-story.html</code>, <code class="inline">contact.html</code>). This costs you internal link equity to those pages — the most important pages on the site after the homepage.</p>
+        <div class="fix">
+          <div class="fix-label bad">Current</div>
+          <pre class="code">&lt;li&gt;&lt;a href="#story"&gt;Our Story&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#story"&gt;Four Generations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#contact"&gt;Careers&lt;/a&gt;&lt;/li&gt;</pre>
+          <div class="fix-label ok">Recommended</div>
+          <pre class="code">&lt;li&gt;&lt;a href="our-story.html"&gt;Our Story&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="our-story.html#timeline"&gt;Four Generations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="contact.html"&gt;Contact Giuseppe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://my.peoplematter.com/mja/lasegunda/jobapp/GetStarted"
+       target="_blank" rel="noopener"&gt;Careers&lt;/a&gt;&lt;/li&gt;</pre>
+        </div>
+      </div>
+    </article>
+
+    <!-- MUST-FIX 07 -->
+    <article class="issue">
+      <div class="issue-no">07</div>
+      <div class="issue-body">
+        <div class="issue-head">
+          <h3 class="issue-title">No FAQ schema on the pages AI engines crawl</h3>
+          <span class="sev high">High</span>
+          <span class="where">file: <b>index.html, products.html, our-story.html</b></span>
+        </div>
+        <p class="issue-desc">FAQ schema exists only on /contact.html — and the questions there are about ordering, not about the bread. For Perplexity, ChatGPT Search, and Google AI Overviews, the highest-yield Q&amp;A pairs are the ones below. Add them to the homepage and Our Story as both visible content <em>and</em> structured data. (Visible Q&amp;A is what AI actually quotes; the schema just helps it find them.)</p>
+        <div class="fix">
+          <div class="fix-label">See "Exact FAQ copy &amp; schema" section below ↓</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- MUST-FIX 08 -->
+    <article class="issue">
+      <div class="issue-no">08</div>
+      <div class="issue-body">
+        <div class="issue-head">
+          <h3 class="issue-title">Block internal brief files from indexing</h3>
+          <span class="sev med">Medium</span>
+          <span class="where">files: <b>/motion-brief.html, /photo-brief.html, /portrait-shot-list.html, /motion-brief-print.html, /motion-brief-pdf.html</b></span>
+        </div>
+        <p class="issue-desc">These are working documents — production briefs not meant for the public. They aren't in your sitemap but they sit at the root, so Google will eventually discover them via direct visits or shared links. Add a <code class="inline">noindex</code> meta tag <em>and</em> disallow them in robots.txt.</p>
+        <div class="fix">
+          <div class="fix-label ok">In each brief file's &lt;head&gt;</div>
+          <pre class="code">&lt;meta name="robots" content="noindex, nofollow"/&gt;</pre>
+          <div class="fix-label ok">In robots.txt</div>
+          <pre class="code">User-agent: *
+Allow: /
+Disallow: /motion-brief.html
+Disallow: /motion-brief-print.html
+Disallow: /motion-brief-pdf.html
+Disallow: /photo-brief.html
+Disallow: /photo-brief.md
+Disallow: /portrait-shot-list.html
+Disallow: /_archive/
+Disallow: /_reference/
+Disallow: /_source/
+Disallow: /scratch/
+Disallow: /uploads/
+
+Sitemap: https://www.cubanbread.com/sitemap.xml</pre>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===================== RECOMMENDED ===================== -->
+<section class="sec" data-screen-label="04 Recommended">
+  <div class="sec-head">
+    <div class="sec-num"><b>03</b>Recommended improvements</div>
+    <div>
+      <h2 class="sec-title">Worth doing in the <em>first 30 days</em>.</h2>
+      <p class="sec-lede">Not blockers, but each meaningfully raises your visibility ceiling. Ordered by ROI.</p>
+    </div>
+  </div>
+
+  <div class="issue-list">
+
+    <article class="issue">
+      <div class="issue-no">09</div>
+      <div class="issue-body">
+        <div class="issue-head">
+          <h3 class="issue-title">Add <em>openingHours</em>, <em>hasMap</em>, and (when available) <em>aggregateRating</em> to the Bakery schema</h3>
+          <span class="sev med">Medium</span>
+          <span class="where">file: <b>index.html, contact.html, distribution.html, our-story.html</b></span>
+        </div>
+        <p class="issue-desc">Google's local pack is a beauty contest. Hours and ratings are table stakes for being shown in the 3-pack and in AI Overview citations for "Cuban bread near me".</p>
+        <div class="fix">
+          <div class="fix-label ok">Add inside the Bakery object</div>
+          <pre class="code">"openingHoursSpecification":[
+  {"@type":"OpeningHoursSpecification",
+   "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+   "opens":"07:00","closes":"17:00"},
+  {"@type":"OpeningHoursSpecification",
+   "dayOfWeek":"Sunday","opens":"07:00","closes":"13:00"}
+],
+"hasMap":"https://maps.app.goo.gl/...your-GMB-shortlink...",
+"aggregateRating":{
+  "@type":"AggregateRating",
+  "ratingValue":"4.8",
+  "reviewCount":"2400",
+  "bestRating":"5"
+}</pre>
+          <p style="font-size:13px;color:var(--cream-mute);margin:6px 0 0;font-family:var(--mono);letter-spacing:0.06em">Only emit aggregateRating if you can cite a real GMB / TripAdvisor count. Fabricated ratings are a manual-action risk.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="issue">
+      <div class="issue-no">10</div>
+      <div class="issue-body">
+        <div class="issue-head">
+          <h3 class="issue-title">Add a visible <em>"Visit the Bakery"</em> module</h3>
+          <span class="sev med">Medium</span>
+          <span class="where">file: <b>index.html</b> and a new <b>visit.html</b></span>
+        </div>
+        <p class="issue-desc">A century-old retail bakery on 15th Street is one of the most search-worthy facts about the brand — and right now there is no "Visit Us" page and no hours module on the homepage. Tampa locals searching <em>"La Segunda hours"</em>, <em>"Cuban bread Ybor City open"</em>, <em>"La Segunda Sunday hours"</em> all bounce. Add a compact module to the homepage and consider a dedicated <code class="inline">visit.html</code> (or <code class="inline">locations.html</code> if there are multiple).</p>
+      </div>
+    </article>
+
+    <article class="issue">
+      <div class="issue-no">11</div>
+      <div class="issue-body">
+        <div class="issue-head">
+          <h3 class="issue-title">Promote <em>cuban-bread / sandwich</em> long-tail content</h3>
+          <span class="sev med">Medium</span>
+          <span class="where">file: new in <b>/blog/</b></span>
+        </div>
+        <p class="issue-desc">The 3 blog posts you have are excellent and target real informational queries. Push that further — these are exactly what AI engines lift for "what is X" questions, and they're how you out-cite Wikipedia on your own subject. Suggested next 4 posts (each ~1,000–1,500 words, FAQ-schema'd):</p>
+        <div class="fix">
+          <div class="fix-row"><b>Post 04</b><p><em>"Tampa-style vs Miami-style Cuban sandwich: the salami question."</em></p></div>
+          <div class="fix-row"><b>Post 05</b><p><em>"The palmetto leaf: why this loaf has a stripe down the middle."</em></p></div>
+          <div class="fix-row"><b>Post 06</b><p><em>"How long does Cuban bread stay fresh? A foodservice operator's guide."</em></p></div>
+          <div class="fix-row"><b>Post 07</b><p><em>"Bucket bread: the #10-can technique unique to Tampa."</em></p></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="issue">
+      <div class="issue-no">12</div>
+      <div class="issue-body">
+        <div class="issue-head">
+          <h3 class="issue-title">Fix <em>hreflang</em> with proper &lt;head&gt; declarations</h3>
+          <span class="sev med">Medium</span>
+          <span class="where">file: <b>contact.html, distribution.html, /es/*</b></span>
+        </div>
+        <p class="issue-desc">Inline <code class="inline">&lt;a hreflang="es"&gt;</code> in the footer is a user-facing nicety. Google looks for paired <code class="inline">&lt;link rel="alternate"&gt;</code> tags in &lt;head&gt;. Without them, the ES variants don't get credited as alternates and you risk duplicate-content scoring against the EN page.</p>
+        <div class="fix">
+          <div class="fix-label ok">In contact.html &lt;head&gt;</div>
+          <pre class="code">&lt;link rel="alternate" hreflang="en-US" href="https://www.cubanbread.com/contact.html"/&gt;
+&lt;link rel="alternate" hreflang="es-US" href="https://www.cubanbread.com/es/contact.html"/&gt;
+&lt;link rel="alternate" hreflang="x-default" href="https://www.cubanbread.com/contact.html"/&gt;</pre>
+          <div class="fix-label ok">In es/contact.html &lt;head&gt; (mirror)</div>
+          <pre class="code">&lt;link rel="alternate" hreflang="en-US" href="https://www.cubanbread.com/contact.html"/&gt;
+&lt;link rel="alternate" hreflang="es-US" href="https://www.cubanbread.com/es/contact.html"/&gt;
+&lt;link rel="alternate" hreflang="x-default" href="https://www.cubanbread.com/contact.html"/&gt;</pre>
+          <p style="font-size:13px;color:var(--cream-mute);margin:6px 0 0;font-family:var(--mono);letter-spacing:0.06em">Repeat for distribution.html ↔ es/distribution.html. Also add both ES URLs to sitemap.xml.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="issue">
+      <div class="issue-no">13</div>
+      <div class="issue-body">
+        <div class="issue-head">
+          <h3 class="issue-title">Add the homepage to the breadcrumb trail</h3>
+          <span class="sev low">Low</span>
+          <span class="where">file: <b>our-story.html, blog/*.html</b></span>
+        </div>
+        <p class="issue-desc">Our Story and the blog posts lack BreadcrumbList schema. Add it. Pattern is already established on /products and /distribution — copy it.</p>
+      </div>
+    </article>
+
+    <article class="issue">
+      <div class="issue-no">14</div>
+      <div class="issue-body">
+        <div class="issue-head">
+          <h3 class="issue-title">Add a tagline-style <em>visually-hidden &lt;h1&gt;</em> alternative</h3>
+          <span class="sev low">Low</span>
+          <span class="where">file: <b>index.html</b> hero</span>
+        </div>
+        <p class="issue-desc">The hero H1 reads "The Original Cuban Bread." — beautiful, but it doesn't carry the brand, the city, or the year. You can keep the visual headline and add a <em>screen-reader-only</em> tagline H1 that's friendlier to search and AI parsers. Decide which one is the canonical H1 and demote the other to H2.</p>
+        <div class="fix">
+          <div class="fix-label ok">One option (keep visual headline as H1, expand it)</div>
+          <pre class="code">&lt;h1 class="hero-h1"&gt;
+  &lt;span class="light"&gt;The&lt;/span&gt;
+  &lt;span&gt;&lt;em&gt;Original&lt;/em&gt;&lt;/span&gt;
+  &lt;span&gt;Cuban&lt;/span&gt;
+  &lt;span&gt;Bread.&lt;/span&gt;
+  &lt;span class="sr-only"&gt;
+    La Segunda Central Bakery — baked in Ybor City, Tampa since 1915.
+  &lt;/span&gt;
+&lt;/h1&gt;</pre>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===================== FAQ COPY (AIO HIGH VALUE) ===================== -->
+<section class="sec" data-screen-label="05 FAQ Copy">
+  <div class="sec-head">
+    <div class="sec-num"><b>04</b>Exact FAQ copy &amp; schema</div>
+    <div>
+      <h2 class="sec-title">The questions AI engines <em>actually ask</em> on your behalf.</h2>
+      <p class="sec-lede">Add these as a visible "FAQ" or "About Cuban Bread" section near the bottom of the homepage <em>and</em> embed the matching FAQPage schema in &lt;head&gt;. AI Overviews tend to lift visible Q&amp;A pairs verbatim — write them like a confident encyclopaedia entry, not a marketing brochure.</p>
+    </div>
+  </div>
+
+  <div class="qa">
+    <p class="qa-q">Who invented <em>Cuban bread</em>?</p>
+    <p class="qa-a">Cuban bread as Americans know it was developed in Tampa, Florida — specifically in the immigrant neighborhood of Ybor City — in the early 1900s. <em>La Segunda Central Bakery</em>, founded in 1915 by Juan Moré, is the oldest continuously operating Cuban bakery in the United States and is credited with codifying the long, palmetto-leaf-scored loaf that defines the Tampa-style Cuban sandwich.</p>
+  </div>
+  <div class="qa">
+    <p class="qa-q">Where is the <em>original</em> Cuban bread bakery?</p>
+    <p class="qa-a">La Segunda Central Bakery is at <em>2512 N. 15th Street, Tampa, FL 33605</em>, in the heart of historic Ybor City. The bakery has operated continuously from the same neighborhood since 1915 and remains family-owned and -operated by the fourth generation of the Moré family.</p>
+  </div>
+  <div class="qa">
+    <p class="qa-q">Is Cuban bread <em>actually</em> from Cuba?</p>
+    <p class="qa-a">The recipe has Spanish-Cuban roots, but the loaf itself — the long, soft-interior, palmetto-leaf-split version sold in American sandwich shops — was perfected in Tampa, not Havana. Catalan immigrant Juan Moré brought a Spanish-Cuban formula to Ybor City in 1915 and built the loaf that has defined the regional bread for more than a century.</p>
+  </div>
+  <div class="qa">
+    <p class="qa-q">What makes <em>La Segunda</em> Cuban bread different?</p>
+    <p class="qa-a">Three things: <em>high-gluten spring wheat flour milled to our specification</em>, a <em>slow overnight fermentation</em>, and the <em>palmetto leaf laid down the center of every loaf</em> before baking — the score Juan Moré used on opening day in 1915. The recipe and method have not changed in four generations.</p>
+  </div>
+  <div class="qa">
+    <p class="qa-q">Can I buy La Segunda bread <em>wholesale</em>?</p>
+    <p class="qa-a">Yes. Frozen, thaw-and-serve product (Cuban Bread 18″ and 36″, Honey Wheat, Media Noche, Coca Buns) ships nationwide through Sysco, US Foods, PFG (Performance Food Group), GFS (Gordon Food Service), Cheney Brothers, Ben E. Keith, and other broadline distributors — reachable in 35+ states through 46 distributor locations, active in 18 states today. For pricing, contact Giuseppe at <em>giuseppe@cubanbread.com</em> or <em>(813) 810-6920</em>; replies within one business day.</p>
+  </div>
+  <div class="qa">
+    <p class="qa-q">Does La Segunda <em>ship nationwide</em>?</p>
+    <p class="qa-a">La Segunda product is reachable in more than 35 states through 46 distributor locations across the United States and is actively moving in 18 states today. Frozen product has a 270-day shelf life at 0°F. Tampa Bay buyers also receive fresh-daily delivery on La Segunda's own trucks.</p>
+  </div>
+  <div class="qa">
+    <p class="qa-q">What is the <em>minimum order</em> for wholesale?</p>
+    <p class="qa-a">For local Tampa Bay direct delivery: 10 loaves per drop, no contract. For frozen distribution outside Tampa Bay, minimums are set by the broadline distributor (Sysco, US Foods, PFG, GFS, Cheney Brothers, Ben E. Keith) and scale by case rather than loaf. Single-location operators and multi-unit groups both welcome.</p>
+  </div>
+  <div class="qa">
+    <p class="qa-q">Is the bakery <em>open to the public</em>?</p>
+    <p class="qa-a">Yes. The retail bakery at 2512 N. 15th Street, Tampa has served Ybor City since 1915 and remains open daily for fresh Cuban bread, hoagie rolls, bucket breads, basket bread, and pastries.</p>
+  </div>
+
+  <div class="fix" style="margin-top:48px">
+    <div class="fix-label ok">Drop-in FAQPage schema for index.html &lt;head&gt;</div>
+    <pre class="code">&lt;script type="application/ld+json"&gt;
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Who invented Cuban bread?",
+     "acceptedAnswer":{"@type":"Answer","text":"Cuban bread as Americans know it was developed in Tampa, Florida — in the Ybor City neighborhood — in the early 1900s. La Segunda Central Bakery, founded in 1915 by Juan Moré, is the oldest continuously operating Cuban bakery in the United States and is credited with codifying the long, palmetto-leaf-scored loaf that defines the Tampa-style Cuban sandwich."}},
+    {"@type":"Question","name":"Where is the original Cuban bread bakery?",
+     "acceptedAnswer":{"@type":"Answer","text":"La Segunda Central Bakery is at 2512 N. 15th Street, Tampa, FL 33605, in historic Ybor City. The bakery has operated continuously from the same neighborhood since 1915 and remains family-owned by the fourth generation of the Moré family."}},
+    {"@type":"Question","name":"Is Cuban bread actually from Cuba?",
+     "acceptedAnswer":{"@type":"Answer","text":"The recipe has Spanish-Cuban roots, but the loaf itself was perfected in Tampa. Catalan immigrant Juan Moré brought a Spanish-Cuban formula to Ybor City in 1915 and built the loaf that defines the regional bread."}},
+    {"@type":"Question","name":"What makes La Segunda Cuban bread different?",
+     "acceptedAnswer":{"@type":"Answer","text":"High-gluten spring wheat flour milled to our specification, a slow overnight fermentation, and the palmetto leaf laid down the center of every loaf before baking — the same method Juan Moré used on opening day in 1915. The recipe has not changed in four generations."}},
+    {"@type":"Question","name":"Can I buy La Segunda bread wholesale?",
+     "acceptedAnswer":{"@type":"Answer","text":"Yes. Frozen product ships nationwide through Sysco, US Foods, PFG, GFS, Cheney Brothers, Ben E. Keith — reachable in 35+ states through 46 distributor locations, active in 18 states today. Contact Giuseppe at giuseppe@cubanbread.com or (813) 810-6920."}},
+    {"@type":"Question","name":"Does La Segunda ship nationwide?",
+     "acceptedAnswer":{"@type":"Answer","text":"La Segunda product is reachable in more than 35 states through 46 distributor locations across the United States and active in 18 states today. Frozen product has a 270-day shelf life at 0°F."}}
+  ]
+}
+&lt;/script&gt;</pre>
+  </div>
+</section>
+
+<!-- ===================== BEAUTIFUL-BUT-HURTS ===================== -->
+<section class="sec" data-screen-label="06 Cosmetic vs SEO">
+  <div class="sec-head">
+    <div class="sec-num"><b>05</b>Beautiful, but…</div>
+    <div>
+      <h2 class="sec-title">Aesthetic choices with a <em>discoverability tax</em>.</h2>
+      <p class="sec-lede">None of these are wrong. They're the cost of a strong art direction. Knowing they cost something lets you decide which to keep on purpose.</p>
+    </div>
+  </div>
+
+  <div class="cosmetic">
+    <div class="cosm">
+      <span class="cosm-tag">— Roman numerals</span>
+      <h4>"<em>Est. MCMXV</em>" &amp; "<em>© MCMXV – MMXXVI</em>"</h4>
+      <p>Beautiful. Unreadable to LLMs. The schema carries "1915" so search engines know, but on-page text scrapers and AI quote-extractors won't equate <strong>MCMXV</strong> with <strong>1915</strong>. <strong>Keep them, but always pair with the Arabic year in the same paragraph</strong> — which the hero already does.</p>
+    </div>
+
+    <div class="cosm">
+      <span class="cosm-tag">— Decorative italics</span>
+      <h4>Red <em>italic</em> emphasis on nouns</h4>
+      <p>The site uses <code>&lt;em&gt;</code> as a visual flourish, not for semantic emphasis. Most of the time this is fine, but in body copy it occasionally italicizes brand-critical words (<em>Original</em>, <em>recipe</em>, <em>Ybor City</em>) that you'd want to stand out for AI. Consider <code>&lt;span class="em"&gt;</code> for the cosmetic case and reserve <code>&lt;em&gt;</code> for sentences where you genuinely want the engine to weight the word.</p>
+    </div>
+
+    <div class="cosm">
+      <span class="cosm-tag">— Split headlines</span>
+      <h4>Hero H1 across four <em>&lt;span&gt;</em> lines</h4>
+      <p>"The / <em>Original</em> / Cuban / Bread." — typographically gorgeous, semantically fine (it parses as one string). Just confirm in any future revisions that you don't accidentally introduce a <code>&lt;br&gt;</code> or display:block tweak that interrupts the parsed text node.</p>
+    </div>
+
+    <div class="cosm">
+      <span class="cosm-tag">— Product placeholders</span>
+      <h4>CSS-gradient <em>"product"</em> cards</h4>
+      <p>The radial-gradient placeholders are tasteful as a launch holding pattern but they're invisible to Google Images, Pinterest, and AI shopping carousels. Every product card is an opportunity to win a thumbnail in a result. <strong>This is the single highest-ROI visual upgrade you can ship.</strong></p>
+    </div>
+
+    <div class="cosm">
+      <span class="cosm-tag">— Map graphic</span>
+      <h4>Animated <em>SVG / Leaflet</em> distribution map</h4>
+      <p>Stunning. Leaflet renders into a canvas though, so the state names are not crawlable text. You already include them in the body and in <code>areaServed</code> schema — that's the right move. Just be sure that if you ever <em>remove</em> the text fallback, you don't simultaneously lose crawler access to the state list.</p>
+    </div>
+
+    <div class="cosm">
+      <span class="cosm-tag">— Hero headline narrowness</span>
+      <h4>"<em>The Original Cuban Bread.</em>" is missing two words</h4>
+      <p>The H1 doesn't mention "La Segunda" or "Tampa". This is the single most important text on the site for both Google and AI. Either expand the visible headline (which costs the typography), or add a screen-reader-only span (see Recommendation 14) — but don't ship the page without one of those two.</p>
+    </div>
+
+    <div class="cosm">
+      <span class="cosm-tag">— Italic Saveur, NYT, etc.</span>
+      <h4>"As Featured In" links use only <em>publication names</em></h4>
+      <p>Link text is just <em>Saveur</em>, <em>Bon Appétit</em>, etc. Search engines weight anchor text. Consider adding hover-revealed or visually-secondary descriptors ("La Segunda in Saveur") on the <code>&lt;a&gt;</code>'s <code>aria-label</code> or <code>title</code> attribute — invisible to design, valuable to crawlers.</p>
+    </div>
+
+    <div class="cosm">
+      <span class="cosm-tag">— No real photos yet</span>
+      <h4><em>og:image</em> is the same file on every page</h4>
+      <p>Every page's Open Graph image is <code>/assets/og-image.jpg</code>. Social shares of Products, Distribution, and Our Story will all preview as the same loaf. Once you have product photography, swap a page-specific OG image for each.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AI ANSWER ENGINE READINESS ===================== -->
+<section class="sec" data-screen-label="07 AIO Notes">
+  <div class="sec-head">
+    <div class="sec-num"><b>06</b>AI search readiness</div>
+    <div>
+      <h2 class="sec-title">How ChatGPT, Perplexity, and Google AI Overviews will <em>actually</em> read this site.</h2>
+      <p class="sec-lede">Three principles drive AI-engine citations: clear factual statements, verifiable third-party signal, and a Q&amp;A surface that maps to user intent. You're 7/10 on the first two and 3/10 on the third.</p>
+    </div>
+  </div>
+
+  <div class="issue-list">
+
+    <article class="issue">
+      <div class="issue-no">A</div>
+      <div class="issue-body">
+        <div class="issue-head"><h3 class="issue-title">Make the <em>"oldest / original"</em> claim explicit and dated</h3><span class="sev high">High</span></div>
+        <p class="issue-desc">Right now you say "the first name in authentic Cuban bread" and "America's original Cuban bread bakery" — but those are marketing claims. AI engines love claims that come with <em>verifiable specifics</em>. State plainly, once, on the homepage and once on /our-story: <em>"Founded 1915. The oldest continuously operating Cuban bakery in the United States."</em> Then back it with a press citation. This single sentence is what gets quoted when someone asks ChatGPT "who is the original Cuban bread bakery?"</p>
+      </div>
+    </article>
+
+    <article class="issue">
+      <div class="issue-no">B</div>
+      <div class="issue-body">
+        <div class="issue-head"><h3 class="issue-title">Inline-cite your press</h3><span class="sev med">Medium</span></div>
+        <p class="issue-desc">The "As Featured In" row is great brand armor. But for AI engines, a citation is more useful when it lives inline with a claim: <em>"…the most legendary Cuban sandwich in Tampa, according to <strong>Southern Living</strong> (2025)."</em> One sentence per page that quotes a publication, with the outlet name in body text, is worth more than the entire logo row for AI Overview inclusion.</p>
+      </div>
+    </article>
+
+    <article class="issue">
+      <div class="issue-no">C</div>
+      <div class="issue-body">
+        <div class="issue-head"><h3 class="issue-title">Write for the <em>"second sentence"</em></h3><span class="sev med">Medium</span></div>
+        <p class="issue-desc">AI Overviews almost always quote the second or third sentence of a paragraph, not the first (the first is treated as a topic sentence). Audit your homepage and Our Story paragraphs so the <em>second</em> sentence of each one is a complete, quotable, attribution-friendly fact about La Segunda. Right now several of those second sentences are decorative ("It comes from a family…") — they read beautifully but don't carry a fact.</p>
+      </div>
+    </article>
+
+    <article class="issue">
+      <div class="issue-no">D</div>
+      <div class="issue-body">
+        <div class="issue-head"><h3 class="issue-title">Use <em>plain-language headings</em> alongside the typographic ones</h3><span class="sev low">Low</span></div>
+        <p class="issue-desc">"From Ybor City to <em>everywhere</em>." is gorgeous and means nothing to a crawler. Either keep it and add an H3 directly underneath ("Distribution network — 35+ states through 46 broadline locations"), or accept that this section will rank for nothing on its own. The section's body copy is strong enough to carry it, but the heading isn't doing work.</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===================== LAUNCH CHECKLIST ===================== -->
+<section class="sec" data-screen-label="08 Launch Checklist">
+  <div class="sec-head">
+    <div class="sec-num"><b>07</b>Launch checklist</div>
+    <div>
+      <h2 class="sec-title">In <em>order</em>. Top to bottom. No skips.</h2>
+      <p class="sec-lede">A pragmatic running order if you have one afternoon before launch.</p>
+    </div>
+  </div>
+
+  <div class="check-grid">
+    <div class="check"><div class="check-mark partial">1</div><div class="check-body"><div class="check-name">Tighten homepage title + meta description</div><div class="check-note">Add "Tampa". Trim description to ≤160 chars. See Must-fix 01–02.</div></div><div class="check-tag">15 min</div></div>
+    <div class="check"><div class="check-mark partial">2</div><div class="check-body"><div class="check-name">Add Organization + WebSite schema to homepage</div><div class="check-note">Copy the &lt;script&gt; block above. Validate with the Rich Results Test.</div></div><div class="check-tag">10 min</div></div>
+    <div class="check"><div class="check-mark partial">3</div><div class="check-body"><div class="check-name">Add FAQPage schema + visible FAQ to homepage</div><div class="check-note">Drop in the 6 Q&amp;A pairs above. Style as expandables or a simple list.</div></div><div class="check-tag">45 min</div></div>
+    <div class="check"><div class="check-mark partial">4</div><div class="check-body"><div class="check-name">Fix footer links to use real page URLs</div><div class="check-note">our-story.html, contact.html, careers ATS. See Must-fix 06.</div></div><div class="check-tag">5 min</div></div>
+    <div class="check"><div class="check-mark partial">5</div><div class="check-body"><div class="check-name">Write descriptive alt for hero photo</div><div class="check-note">+ pre-populate alt patterns for the upcoming product shots.</div></div><div class="check-tag">10 min</div></div>
+    <div class="check"><div class="check-mark partial">6</div><div class="check-body"><div class="check-name">Add hreflang &lt;link&gt; tags to EN ↔ ES pairs</div><div class="check-note">contact.html ↔ es/contact.html and distribution pair.</div></div><div class="check-tag">10 min</div></div>
+    <div class="check"><div class="check-mark partial">7</div><div class="check-body"><div class="check-name">Add ES URLs to sitemap.xml</div><div class="check-note">Two URLs. Include &lt;xhtml:link&gt; hreflang alternates if you want to be thorough.</div></div><div class="check-tag">5 min</div></div>
+    <div class="check"><div class="check-mark partial">8</div><div class="check-body"><div class="check-name">Add noindex + robots.txt disallow for briefs</div><div class="check-note">5 brief files + _archive, _source, _reference, scratch, uploads folders.</div></div><div class="check-tag">10 min</div></div>
+    <div class="check"><div class="check-mark partial">9</div><div class="check-body"><div class="check-name">Add BreadcrumbList schema to our-story.html + blog posts</div><div class="check-note">Mirror the pattern from /products and /distribution.</div></div><div class="check-tag">15 min</div></div>
+    <div class="check"><div class="check-mark partial">10</div><div class="check-body"><div class="check-name">Add openingHours to Bakery schema</div><div class="check-note">+ hasMap, + aggregateRating (if you can cite real GMB count).</div></div><div class="check-tag">10 min</div></div>
+    <div class="check"><div class="check-mark partial">11</div><div class="check-body"><div class="check-name">Submit sitemap + request indexing in Search Console</div><div class="check-note">For each of the 9 production URLs. Verify ownership first.</div></div><div class="check-tag">15 min</div></div>
+    <div class="check"><div class="check-mark partial">12</div><div class="check-body"><div class="check-name">Validate everything</div><div class="check-note">Rich Results Test, Schema.org validator, Lighthouse SEO, Pagespeed. Catch the small things you missed.</div></div><div class="check-tag">20 min</div></div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="foot" data-screen-label="09 Foot">
+  <div class="foot-grid">
+    <div>
+      <h2 class="foot-h">Bottom line: <em>ship it</em> — after these eight.</h2>
+      <p class="foot-p">You've already done the hard part. The schema, the canonicals, the editorial — this is a site that takes itself seriously. Spending one focused afternoon on the eight must-fix items above takes it from a beautifully presented brand to a brand that <em>ranks</em> like one.</p>
+    </div>
+    <div class="foot-meta">
+      <div><b>Audit</b> SEO + AIO + AI Search</div>
+      <div><b>Site</b> cubanbread.com</div>
+      <div><b>Date</b> May 2026</div>
+      <div><b>Status</b> Pre-launch</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

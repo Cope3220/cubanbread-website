@@ -1,0 +1,1039 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>[Template Title] · La Segunda Wholesale</title>
+<meta name="description" content="[Template meta description — 150-160 chars. Lead with wholesale Cuban bread positioning + Ybor City / 1915 anchor + buyer audience.]"/>
+<link rel="canonical" href="https://www.cubanbread.com/[template-slug]"/>
+
+<!-- Hreflang -->
+<link rel="alternate" hreflang="en-US" href="https://www.cubanbread.com/[template-slug]"/>
+<link rel="alternate" hreflang="x-default" href="https://www.cubanbread.com/[template-slug]"/>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="La Segunda Central Bakery"/>
+<meta property="og:title" content="[Template OG title]"/>
+<meta property="og:description" content="[Template OG description]"/>
+<meta property="og:url" content="https://www.cubanbread.com/[template-slug]"/>
+<meta property="og:image" content="https://www.cubanbread.com/assets/og-image.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="[Template OG image alt]"/>
+<meta property="og:locale" content="en_US"/>
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="[Template Twitter title]"/>
+<meta name="twitter:description" content="[Template Twitter description]"/>
+<meta name="twitter:image" content="https://www.cubanbread.com/assets/og-image.jpg"/>
+
+<!--
+  =========================================================================
+  WHOLESALE LANDING PAGE TEMPLATE · La Segunda / CubanBread.com
+  =========================================================================
+  Source visual system: index.html (approved Oct 2025).
+  This file is COPY-AGNOSTIC. Replace every [Bracketed] string before publish.
+
+  Sections (in order):
+    01 · Hero
+    02 · Credibility Bar
+    03 · Who We Serve
+    04 · Product / Formats
+    05 · Why La Segunda
+    06 · Wholesale Process
+    07 · Heritage / Proof
+    08 · FAQ
+    09 · Final CTA (dark)
+
+  Tone guardrails:
+    — Foodservice / B2B, not retail / café
+    — Editorial heritage, not bakery cute
+    — Restrained square components, no SaaS gradients
+    — Playfair display + DM Sans body + DM Mono micro-copy
+  =========================================================================
+-->
+
+<!-- Schema scaffolds — fill in per page. Kept as inert placeholders so the
+     template doesn't ship invalid JSON-LD; uncomment + populate per page.
+
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "WebPage",
+  "name": "[Page name]", "description": "[Page description]",
+  "url": "https://www.cubanbread.com/[slug]",
+  "isPartOf": { "@id": "https://www.cubanbread.com/#website" }
+}
+</script>
+
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "[Question 1]",
+      "acceptedAnswer": { "@type": "Answer", "text": "[Answer 1]" } }
+  ]
+}
+</script>
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap">
+<style>
+:root{
+  /* La Segunda Identity Guide — Oct 4, 2019 */
+  --maroon:#6D0020;        /* More Maroon · PMS 188 */
+  --red:#EE3525;           /* Oven Red · PMS Bright Red */
+  --gold:#E5D660;          /* Cuban Gold · PMS 458 */
+  --pewter:#545859;        /* Pewter · PMS 425 */
+  --crust:#9D6B3F;         /* Crust — warm secondary accent */
+
+  --ink:#0d0d0d;
+  --ink-2:#141414;
+  --ink-3:#1a1a1a;
+  --rule:rgba(245,241,232,0.12);
+  --rule-strong:rgba(245,241,232,0.22);
+  --cream:#F5F1E8;
+  --cream-dim:rgba(245,241,232,0.72);
+  --cream-mute:rgba(245,241,232,0.58);
+
+  --red-ink:#B8261A;
+  --red-glow:rgba(238,53,37,0.18);
+
+  --display:"Playfair Display", Georgia, serif;
+  --brand:"Playfair Display", Georgia, serif;
+  --sans:"DM Sans", -apple-system, system-ui, sans-serif;
+  --mono:"DM Mono", ui-monospace, monospace;
+
+  --kern-head:0.1em;
+  --kern-body:0.03em;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--ink);color:var(--cream);font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;letter-spacing:var(--kern-body)}
+body{overflow-x:hidden}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font:inherit;cursor:pointer;background:none;border:0;color:inherit}
+
+/* ========== NAV ========== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 56px;
+  background:linear-gradient(180deg, rgba(13,13,13,0.92) 0%, rgba(13,13,13,0.7) 60%, rgba(13,13,13,0) 100%);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-icon{height:44px;width:auto;display:block;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3))}
+.brand-word{height:63px;width:auto;display:block}
+.nav-links{display:flex;align-items:center;gap:40px}
+.nav-links a{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--cream-dim);transition:color .2s}
+.nav-links a:hover{color:var(--cream)}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:13px 22px;background:var(--red);color:var(--cream);
+  font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+  transition:background .2s;
+}
+.nav-cta:hover{background:var(--red-ink);color:var(--cream)}
+.nav-cta .arr{transition:transform .2s}
+.nav-cta:hover .arr{transform:translateX(3px)}
+.nav-retail{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--cream-mute);padding:6px 10px;border:1px solid var(--rule-strong);
+  transition:color .2s,border-color .2s;
+}
+.nav-retail:hover{color:var(--cream);border-color:var(--cream)}
+.nav-retail .arr-ext{font-size:10px;opacity:0.7}
+
+/* ========== HERO ========== */
+.hero{
+  position:relative;height:100vh;display:block;
+  border-bottom:1px solid var(--rule);
+  background:#0a0705;overflow:hidden;
+}
+.hero-photo-bg{
+  position:absolute;inset:0;z-index:0;
+  background-color:#0a0705;
+  background-image:url('assets/hero-bread-v2.jpg');
+  background-size:auto 100%;background-position:right bottom;background-repeat:no-repeat;
+  pointer-events:none;
+  -webkit-mask-image:linear-gradient(to right, transparent 0%, transparent 35%, rgba(0,0,0,0.3) 48%, #000 58%);
+          mask-image:linear-gradient(to right, transparent 0%, transparent 35%, rgba(0,0,0,0.3) 48%, #000 58%);
+}
+.hero-photo-bg img{display:none}
+.hero-photo-veil{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to right, #000 0%, #000 25%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0.2) 70%, transparent 85%);
+}
+.hero-left{
+  position:absolute;inset:0;z-index:2;
+  padding:88px 56px 60px 64px;display:flex;flex-direction:column;
+  pointer-events:none;
+}
+.hero-left > *{pointer-events:auto}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--red);margin:0;
+}
+.hero-h1{
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(72px, 9vw, 130px);line-height:0.95;letter-spacing:-0.02em;
+  margin:auto 0;color:var(--cream);max-width:60%;
+}
+.hero-h1 em{font-style:italic;font-weight:400;color:var(--red)}
+.hero-h1 .light{font-weight:400}
+.hero-h1 span{display:block}
+.hero-lede{
+  max-width:280px;font-size:15px;line-height:1.5;color:var(--cream-dim);
+  margin:0;border:0;padding:0;
+}
+.hero-actions{margin-top:24px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:14px;
+  padding:18px 28px;font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+  transition:all .2s;white-space:nowrap;
+}
+.btn-red{background:var(--red);color:var(--cream)}
+.btn-red:hover{background:var(--red-ink)}
+.btn-ghost{background:transparent;color:var(--cream);border:1px solid var(--rule-strong)}
+.btn-ghost:hover{border-color:var(--cream)}
+.btn .arr{font-family:var(--sans);font-size:16px;letter-spacing:0;transition:transform .2s}
+.btn:hover .arr{transform:translateX(4px)}
+
+/* ========== CREDIBILITY BAR ========== */
+.cred{
+  border-bottom:1px solid var(--rule);
+  background:var(--ink-2);
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.cred-item{
+  padding:32px 36px;border-right:1px solid var(--rule);
+  display:flex;flex-direction:column;gap:8px;
+}
+.cred-item:last-child{border-right:0}
+.cred-k{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--red);
+}
+.cred-v{
+  font-family:var(--display);font-size:26px;font-weight:500;line-height:1.15;
+  color:var(--cream);letter-spacing:-0.005em;
+}
+.cred-v em{font-style:italic;color:var(--red);font-weight:400}
+
+/* ========== SECTION shell ========== */
+section{position:relative}
+.section{padding:140px 56px;border-bottom:1px solid var(--rule);position:relative}
+.sec-head{display:grid;grid-template-columns: 160px 1fr;gap:56px;margin-bottom:80px}
+.sec-num{
+  font-family:var(--mono);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--cream-mute);padding-top:14px;
+}
+.sec-num b{color:var(--red);font-weight:400;margin-right:10px}
+.sec-title{
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(44px,5.5vw,84px);line-height:1;letter-spacing:-0.02em;margin:0;color:var(--cream);
+  max-width:14ch;
+}
+.sec-title em{font-style:italic;color:var(--red)}
+.sec-lede{
+  max-width:54ch;margin-top:24px;
+  color:var(--cream-dim);font-size:15.5px;line-height:1.7;
+}
+.sec-lede strong{color:var(--cream);font-weight:500}
+
+/* ========== WHO WE SERVE ========== */
+.serve{background:var(--ink-2)}
+.serve-grid{
+  display:grid;grid-template-columns:repeat(12,1fr);gap:24px;
+}
+.serve-card{
+  grid-column:span 4;
+  background:var(--ink);border:1px solid var(--rule);
+  padding:36px 32px 32px;
+  display:flex;flex-direction:column;gap:14px;
+  transition:border-color .2s,transform .25s;
+  position:relative;min-height:280px;
+}
+.serve-card:hover{border-color:var(--red)}
+.serve-card .serve-num{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:0.26em;
+  text-transform:uppercase;color:var(--red);
+}
+.serve-card h3{
+  font-family:var(--display);font-weight:400;
+  font-size:34px;line-height:1.05;letter-spacing:-0.01em;
+  margin:0;color:var(--cream);
+}
+.serve-card h3 em{font-style:italic;color:var(--red)}
+.serve-card p{
+  font-size:14px;line-height:1.65;color:var(--cream-dim);
+  margin:0;
+}
+.serve-card .serve-meta{
+  margin-top:auto;padding-top:18px;border-top:1px solid var(--rule);
+  font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--cream-mute);
+}
+.serve-card.feature{grid-column:span 8;min-height:0}
+.serve-card.feature h3{font-size:48px}
+.serve-card.feature p{max-width:48ch;font-size:15px}
+
+/* ========== PRODUCT / FORMATS ========== */
+.products{background:var(--ink)}
+.products-intro{max-width:54ch;color:var(--cream-dim);font-size:15.5px;line-height:1.7;margin-top:20px}
+.prod-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:32px}
+.prod-card{
+  background:var(--ink-2);border:1px solid var(--rule);
+  padding:0;display:flex;flex-direction:column;
+  transition:border-color .2s;position:relative;
+}
+.prod-card:hover{border-color:var(--red)}
+.prod-card.wide{grid-column:span 12}
+.prod-card.third{grid-column:span 4}
+.prod-card.half{grid-column:span 6}
+.prod-img{
+  aspect-ratio:16/9;position:relative;overflow:hidden;
+  background:var(--ink-3);border-bottom:1px solid var(--rule);
+}
+.prod-card.third .prod-img{aspect-ratio:4/3}
+.prod-card.half .prod-img{aspect-ratio:16/10}
+.prod-img-label{
+  position:absolute;top:16px;left:16px;
+  font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(245,241,232,0.5);
+}
+.prod-img-label::before{content:"◦ ";color:var(--red)}
+/* Striped placeholder (template default — replace with real photography) */
+.prod-img-placeholder{
+  background:
+    repeating-linear-gradient(115deg, #1a1008 0px, #1a1008 2px, #241409 2px, #241409 4px),
+    #1a0f07;
+  position:relative;
+}
+.prod-img-placeholder::after{
+  content:"[ Product photography ]";
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(245,241,232,0.32);
+}
+.prod-body{padding:28px 32px 32px;display:flex;flex-direction:column;gap:14px;flex:1}
+.prod-card.wide .prod-body{padding:36px 40px}
+.prod-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:0.28em;text-transform:uppercase;color:var(--red)}
+.prod-name{font-family:var(--display);font-weight:500;font-size:30px;letter-spacing:-0.01em;margin:0;color:var(--cream);line-height:1.1}
+.prod-card.wide .prod-name{font-size:48px;font-weight:400}
+.prod-name em{font-style:italic;color:var(--red);font-weight:400}
+.prod-sub{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--cream-mute);margin:-4px 0 0}
+.prod-desc{color:var(--cream-dim);font-size:14px;line-height:1.65;margin:0}
+.prod-card.wide .prod-desc{font-size:16px;max-width:60ch}
+.prod-specs{
+  margin-top:14px;padding-top:18px;border-top:1px solid var(--rule);
+  display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+}
+.spec-k{font-family:var(--mono);font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--cream-mute);margin-bottom:6px}
+.spec-v{font-family:var(--display);font-style:italic;font-size:16px;color:var(--cream)}
+.prod-card.wide .spec-v{font-size:20px}
+.prod-link{
+  margin-top:auto;padding-top:20px;
+  font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--cream);
+  display:inline-flex;align-items:center;gap:10px;transition:color .2s;align-self:flex-start;
+}
+.prod-link:hover{color:var(--red)}
+.prod-link .arr{transition:transform .2s}
+.prod-link:hover .arr{transform:translateX(4px)}
+
+/* ========== WHY LA SEGUNDA ========== */
+.why{background:var(--ink-2)}
+.why-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--rule);
+  border-left:1px solid var(--rule);
+}
+.why-card{
+  padding:44px 36px;
+  border-right:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  display:flex;flex-direction:column;gap:16px;
+  min-height:340px;
+  transition:background .25s;
+}
+.why-card:hover{background:var(--ink)}
+.why-num{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--red);
+}
+.why-h{
+  font-family:var(--display);font-weight:500;
+  font-size:30px;line-height:1.05;letter-spacing:-0.01em;
+  color:var(--cream);margin:0;
+}
+.why-h em{font-style:italic;color:var(--red);font-weight:400}
+.why-p{font-size:14px;line-height:1.65;color:var(--cream-dim);margin:0}
+.why-foot{
+  margin-top:auto;padding-top:20px;border-top:1px solid var(--rule);
+  font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--cream-mute);
+}
+.why-foot em{font-style:italic;color:var(--red)}
+
+/* ========== WHOLESALE PROCESS ========== */
+.process{background:var(--ink)}
+.process-list{
+  display:flex;flex-direction:column;gap:0;
+  border-top:1px solid var(--rule);
+}
+.step{
+  display:grid;grid-template-columns:120px 1fr 1fr auto;gap:48px;align-items:start;
+  padding:40px 0;border-bottom:1px solid var(--rule);
+  transition:padding .2s;
+}
+.step:hover{padding-left:12px}
+.step-num{
+  font-family:var(--display);font-style:italic;font-size:48px;font-weight:500;
+  color:var(--red);line-height:1;letter-spacing:-0.01em;
+}
+.step-title{
+  font-family:var(--display);font-size:32px;font-weight:500;line-height:1.1;
+  letter-spacing:-0.005em;color:var(--cream);margin:0;
+}
+.step-title em{font-style:italic;color:var(--red);font-weight:400}
+.step-desc{
+  font-size:14.5px;line-height:1.65;color:var(--cream-dim);margin:0;
+  max-width:46ch;
+}
+.step-meta{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--cream-mute);white-space:nowrap;padding-top:18px;
+}
+.step-meta b{color:var(--cream);font-weight:500}
+
+/* ========== HERITAGE / PROOF ========== */
+.heritage{background:var(--ink-2)}
+.heritage-grid{
+  display:grid;grid-template-columns:160px 1fr 1fr;gap:56px;align-items:start;
+}
+.heritage-lead{
+  font-family:var(--display);font-size:28px;line-height:1.3;font-weight:400;color:var(--cream);
+  letter-spacing:-0.005em;margin:0;
+}
+.heritage-lead em{font-style:italic;color:var(--red);font-weight:400}
+.heritage-body{color:var(--cream-dim);font-size:15px;line-height:1.7;display:flex;flex-direction:column;gap:18px;margin:0}
+.heritage-body strong{color:var(--cream);font-weight:500}
+.heritage-meta{
+  grid-column:1 / -1;margin-top:64px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--rule);padding-top:32px;
+}
+.heritage-meta-item{padding-right:32px;border-right:1px solid var(--rule)}
+.heritage-meta-item:last-child{border-right:0}
+.heritage-meta-k{font-family:var(--mono);font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--cream-mute);margin-bottom:12px}
+.heritage-meta-v{font-family:var(--display);font-size:22px;font-weight:500;color:var(--cream);line-height:1.2}
+.heritage-meta-v em{font-style:italic;color:var(--red);font-weight:400}
+
+/* ========== FAQ ========== */
+.faq{background:var(--ink)}
+.faq-list{display:flex;flex-direction:column;border-top:1px solid var(--rule);max-width:980px}
+.faq-item{border-bottom:1px solid var(--rule);padding:0}
+.faq-item summary{
+  list-style:none;cursor:pointer;
+  display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;
+  padding:28px 0;transition:padding .2s;
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item:hover summary{padding-left:8px}
+.faq-item summary h3{
+  font-family:var(--display);font-weight:500;
+  font-size:clamp(22px,2.4vw,32px);line-height:1.2;letter-spacing:-0.005em;
+  color:var(--cream);margin:0;
+}
+.faq-item summary h3 em{font-style:italic;color:var(--red);font-weight:400}
+.faq-mark{
+  font-family:var(--display);font-style:italic;font-size:32px;line-height:1;
+  color:var(--red);transition:transform .25s ease;
+  display:inline-flex;align-items:center;justify-content:center;width:32px;
+}
+.faq-item[open] .faq-mark{transform:rotate(45deg)}
+.faq-item > p{
+  margin:0;padding:0 0 28px;max-width:72ch;
+  font-size:15.5px;line-height:1.7;color:var(--cream-dim);
+}
+.faq-item > p a{color:var(--red);border-bottom:1px solid rgba(238,53,37,0.4);transition:border-color .2s}
+.faq-item > p a:hover{border-color:var(--red)}
+
+/* ========== FINAL CTA (DARK) ========== */
+.final-cta{
+  background:#080605;color:var(--cream);
+  padding:140px 56px;position:relative;overflow:hidden;
+  border-bottom:1px solid var(--rule);
+}
+/* Very subtle red glow on left, no gradient slop */
+.final-cta::before{
+  content:"";position:absolute;left:-200px;top:50%;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle, rgba(238,53,37,0.08) 0%, rgba(238,53,37,0) 60%);
+  transform:translateY(-50%);pointer-events:none;
+}
+.final-inner{
+  max-width:1280px;margin:0 auto;position:relative;z-index:2;
+  display:grid;grid-template-columns:160px 1.3fr 1fr;gap:56px;align-items:end;
+}
+.final-num{
+  font-family:var(--mono);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--cream-mute);padding-bottom:14px;
+}
+.final-num b{color:var(--red);font-weight:400;margin-right:10px}
+.final-title{
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(48px,6vw,96px);line-height:0.98;letter-spacing:-0.02em;
+  margin:0;color:var(--cream);
+}
+.final-title em{font-style:italic;color:var(--red);font-weight:400}
+.final-sub{
+  margin-top:24px;font-size:15.5px;line-height:1.65;
+  color:var(--cream-dim);max-width:48ch;
+}
+.final-actions{
+  display:flex;flex-direction:column;gap:12px;align-self:end;padding-bottom:8px;
+}
+.final-meta{
+  margin-top:36px;padding-top:32px;border-top:1px solid var(--rule);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+  max-width:1280px;margin-left:auto;margin-right:auto;position:relative;z-index:2;
+}
+.final-meta-item{}
+.final-meta-k{font-family:var(--mono);font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.final-meta-v{font-family:var(--display);font-size:22px;font-weight:500;color:var(--cream);line-height:1.25;letter-spacing:-0.005em}
+.final-meta-v em{font-style:italic;color:var(--red);font-weight:400}
+.final-meta-v a{color:var(--cream);transition:color .2s;border-bottom:1px solid var(--rule-strong)}
+.final-meta-v a:hover{color:var(--red);border-color:var(--red)}
+
+/* ========== FOOTER ========== */
+.foot{background:var(--ink);padding:80px 56px 40px}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:56px;border-bottom:1px solid var(--rule)}
+.foot-brand-word{height:48px;width:auto;display:block;margin-bottom:18px}
+.foot-address{color:var(--cream-dim);font-size:14px;line-height:1.7;max-width:32ch;margin:0}
+.foot-address a{color:var(--cream-dim);transition:color .2s}
+.foot-address a:hover{color:var(--cream)}
+.foot-col h5{font-family:var(--mono);font-size:10px;letter-spacing:0.26em;text-transform:uppercase;color:var(--red);margin:0 0 20px;font-weight:500}
+.foot-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}
+.foot-col a{color:var(--cream-dim);font-size:14px;transition:color .2s}
+.foot-col a:hover{color:var(--cream)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:32px;font-family:var(--mono);font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--cream-mute)}
+.foot-bottom a{color:var(--cream-mute)}
+.foot-bottom a:hover{color:var(--cream)}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1100px){
+  .hero-h1{font-size:clamp(64px, 9vw, 110px);max-width:70%}
+  .cred{grid-template-columns:repeat(2,1fr)}
+  .cred-item:nth-child(2){border-right:0}
+  .cred-item:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+  .serve-card,.serve-card.feature{grid-column:span 6}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .final-inner{grid-template-columns:1fr 1fr;gap:40px}
+  .final-num{grid-column:1 / -1;padding-bottom:0}
+}
+@media (max-width: 860px){
+  .nav{padding:14px 22px}
+  .section,.final-cta{padding:80px 28px}
+  .sec-head{grid-template-columns:1fr;gap:20px;margin-bottom:48px}
+  .sec-title{font-size:clamp(40px, 9vw, 64px)}
+
+  .hero{height:auto;min-height:100vh;display:flex;flex-direction:column}
+  .hero-photo-bg{
+    position:relative;height:46vh;min-height:300px;max-height:480px;width:100%;
+    background-size:cover;background-position:center 55%;
+    -webkit-mask-image:linear-gradient(to bottom, #000 0%, #000 65%, rgba(0,0,0,0.6) 85%, transparent 100%);
+            mask-image:linear-gradient(to bottom, #000 0%, #000 65%, rgba(0,0,0,0.6) 85%, transparent 100%);
+  }
+  .hero-photo-veil{background:linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.85) 100%)}
+  .hero-left{position:relative;inset:auto;padding:32px 28px 56px;flex:1;z-index:5}
+  .hero-h1{font-size:clamp(54px, 13vw, 90px);line-height:0.96;max-width:none;margin:18px 0 28px}
+  .hero-lede{max-width:none;font-size:15px}
+  .hero-eyebrow{font-size:10px;letter-spacing:0.26em}
+
+  .cred{grid-template-columns:1fr}
+  .cred-item{border-right:0;border-bottom:1px solid var(--rule)}
+  .cred-item:last-child{border-bottom:0}
+
+  .serve-card,.serve-card.feature{grid-column:span 12}
+  .prod-card.third,.prod-card.half{grid-column:span 12}
+  .prod-card.wide .prod-name{font-size:38px}
+  .prod-specs{grid-template-columns:repeat(2,1fr);gap:14px}
+
+  .why-grid{grid-template-columns:1fr}
+
+  .step{grid-template-columns:1fr;gap:14px;padding:28px 0}
+  .step-meta{padding-top:6px}
+
+  .heritage-grid{grid-template-columns:1fr;gap:24px}
+  .heritage-meta{grid-template-columns:repeat(2,1fr);gap:18px}
+  .heritage-meta-item{padding:0 0 18px;border-right:0;border-bottom:1px solid var(--rule)}
+
+  .final-inner{grid-template-columns:1fr;gap:32px;align-items:start}
+  .final-num{padding-bottom:0}
+  .final-actions{flex-direction:row;flex-wrap:wrap}
+  .final-meta{grid-template-columns:1fr;gap:24px}
+
+  .foot{padding:60px 28px 30px}
+  .foot-top{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media (max-width: 520px){
+  .foot-top{grid-template-columns:1fr;gap:28px}
+  .heritage-meta{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<a class="sr-only" href="#main">Skip to content</a>
+
+<!-- ==================== NAV ==================== -->
+<nav class="nav">
+  <a href="index.html" class="brand" aria-label="La Segunda Central Bakery — Wholesale">
+    <img src="assets/logo-icon.png" alt="" class="brand-icon"/>
+    <img src="assets/logo-word.png" alt="La Segunda Central Bakery · Est. 1915" class="brand-word"/>
+  </a>
+  <div class="nav-links">
+    <a href="our-story.html">Our Story</a>
+    <a href="products.html">Products</a>
+    <a href="distribution.html">Distribution</a>
+    <a href="https://www.lasegundabakery.com/" target="_blank" rel="noopener" class="nav-retail" title="Retail bakery &amp; café">Retail Bakery <span class="arr-ext">↗</span></a>
+    <a href="contact.html" class="nav-cta">Request Wholesale Pricing <span class="arr">→</span></a>
+  </div>
+</nav>
+
+
+<!-- ==================== 01 · HERO ==================== -->
+<section class="hero" id="main" data-screen-label="01 Hero">
+  <div class="hero-photo-bg"><img src="assets/hero-bread-v2.jpg" alt="[Hero image alt — describe the bread/scene in this hero photo]"/></div>
+  <div class="hero-photo-veil"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">[Hero eyebrow · e.g. Wholesale &amp; Foodservice · Est. 1915 · Ybor City]</div>
+
+    <h1 class="hero-h1">
+      <span class="light">[Hero]</span>
+      <span><em>[headline]</em></span>
+      <span>[in four]</span>
+      <span>[lines.]</span>
+      <span class="sr-only"> [Hero accessible long-form description — describe wholesale offering for screen readers and AI crawlers.]</span>
+    </h1>
+
+    <div class="hero-bottom">
+      <p class="hero-lede">
+        <strong>[Hero subheadline — one bolded clause that identifies the buyer.]</strong> [Followed by a supporting clause that names the scale, geography, and channel partners.]
+      </p>
+      <div class="hero-actions">
+        <a href="#final-cta" class="btn btn-red">[Primary CTA] <span class="arr">→</span></a>
+        <a href="#products" class="btn btn-ghost">[Secondary CTA] <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==================== 02 · CREDIBILITY BAR ==================== -->
+<section class="cred" data-screen-label="02 Credibility" aria-label="Credibility markers">
+  <div class="cred-item">
+    <div class="cred-k">— Founded</div>
+    <div class="cred-v"><em>Est.</em> 1915</div>
+  </div>
+  <div class="cred-item">
+    <div class="cred-k">— Origin</div>
+    <div class="cred-v">Ybor City, <em>Tampa</em></div>
+  </div>
+  <div class="cred-item">
+    <div class="cred-k">— Product</div>
+    <div class="cred-v">Wholesale <em>Cuban Bread</em></div>
+  </div>
+  <div class="cred-item">
+    <div class="cred-k">— Channel</div>
+    <div class="cred-v">Foodservice <em>Distribution</em></div>
+  </div>
+</section>
+
+
+<!-- ==================== 03 · WHO WE SERVE ==================== -->
+<section class="section serve" id="serve" data-screen-label="03 Who We Serve">
+  <div class="sec-head">
+    <div class="sec-num"><b>01</b>Who We Serve</div>
+    <div>
+      <h2 class="sec-title">[Who we<br>serve, in <em>two lines.</em>]</h2>
+      <p class="sec-lede">[Lede sentence that names the foodservice buyer categories below and frames why La Segunda fits operations at their scale.]</p>
+    </div>
+  </div>
+
+  <div class="serve-grid">
+
+    <article class="serve-card feature">
+      <div class="serve-num">— 01 · Primary buyer segment</div>
+      <h3>[Restaurants <em>&amp; multi-unit</em> operators.]</h3>
+      <p>[2–3 sentence buyer-recognition paragraph: name the operator type, the bread/format they typically order, and the operational pain we solve.]</p>
+      <div class="serve-meta">[Format · 18″ Cuban · 36″ Cuban · Hoagie Rolls]</div>
+    </article>
+
+    <article class="serve-card">
+      <div class="serve-num">— 02</div>
+      <h3><em>Hotels.</em></h3>
+      <p>[1–2 sentence description of how hotels use La Segunda — banquet, in-room dining, breakfast service.]</p>
+      <div class="serve-meta">[Format · Frozen / Thaw-and-serve]</div>
+    </article>
+
+    <article class="serve-card">
+      <div class="serve-num">— 03</div>
+      <h3><em>Schools</em> &amp; K-12.</h3>
+      <p>[1–2 sentence description focused on K-12, NSLP, USDA Smart Snacks compliance, Honey Wheat 51% whole-grain product.]</p>
+      <div class="serve-meta">[Format · Honey Wheat · Whole-grain rich]</div>
+    </article>
+
+    <article class="serve-card">
+      <div class="serve-num">— 04</div>
+      <h3><em>Distributors.</em></h3>
+      <p>[1–2 sentence description for broadline and regional distributor partners — Sysco, US Foods, PFG, GFS, Cheney Brothers, Ben E. Keith.]</p>
+      <div class="serve-meta">[Channel · Broadline · Regional]</div>
+    </article>
+
+    <article class="serve-card">
+      <div class="serve-num">— 05</div>
+      <h3><em>Foodservice</em> operators.</h3>
+      <p>[1–2 sentence description for institutional foodservice, contract feeders, country clubs, caterers, hospitals.]</p>
+      <div class="serve-meta">[Format · Volume programs]</div>
+    </article>
+
+  </div>
+</section>
+
+
+<!-- ==================== 04 · PRODUCT / FORMATS ==================== -->
+<section class="section products" id="products" data-screen-label="04 Products">
+  <div class="sec-head">
+    <div class="sec-num"><b>02</b>Product</div>
+    <div>
+      <h2 class="sec-title">[Product<br>headline.<br><em>Two lines.</em>]</h2>
+      <p class="products-intro">[Product description — explain the bread, the bake method (palmetto-leaf split, slow fermentation), and the formats available for wholesale buyers.]</p>
+    </div>
+  </div>
+
+  <div class="prod-grid">
+
+    <!-- FLAGSHIP WIDE CARD -->
+    <article class="prod-card wide">
+      <div class="prod-img prod-img-placeholder">
+        <div class="prod-img-label">[Hero product photo]</div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-eyebrow">— [Flagship · category tag]</div>
+        <h3 class="prod-name">[Flagship <em>product name</em>]</h3>
+        <p class="prod-desc">[1–3 sentence flagship description. Lead with what it is, follow with the technique or characteristic that differentiates it.]</p>
+
+        <div class="prod-specs">
+          <div><div class="spec-k">Pack Count</div><div class="spec-v">[24 / case]</div></div>
+          <div><div class="spec-k">Status</div><div class="spec-v">[Frozen]</div></div>
+          <div><div class="spec-k">Shelf Life</div><div class="spec-v">[270 days]</div></div>
+          <div><div class="spec-k">Distribution</div><div class="spec-v">[Nationwide]</div></div>
+        </div>
+        <a href="products.html#[product-slug]" class="prod-link">[Full product page] <span class="arr">→</span></a>
+      </div>
+    </article>
+
+    <!-- 3 MEDIUM CARDS -->
+    <article class="prod-card third">
+      <div class="prod-img prod-img-placeholder">
+        <div class="prod-img-label">[Product 2 photo]</div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-eyebrow">— [Item code]</div>
+        <h3 class="prod-name">[Product <em>2 name</em>]</h3>
+        <p class="prod-sub">[Pack · size · case count]</p>
+        <p class="prod-desc">[1–2 sentence description.]</p>
+        <a href="#" class="prod-link">[Spec sheet] <span class="arr">↓</span></a>
+      </div>
+    </article>
+
+    <article class="prod-card third">
+      <div class="prod-img prod-img-placeholder">
+        <div class="prod-img-label">[Product 3 photo]</div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-eyebrow">— [Item code]</div>
+        <h3 class="prod-name">[Product <em>3 name</em>]</h3>
+        <p class="prod-sub">[Pack · size · case count]</p>
+        <p class="prod-desc">[1–2 sentence description.]</p>
+        <a href="#" class="prod-link">[Spec sheet] <span class="arr">↓</span></a>
+      </div>
+    </article>
+
+    <article class="prod-card third">
+      <div class="prod-img prod-img-placeholder">
+        <div class="prod-img-label">[Product 4 photo]</div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-eyebrow">— [Item code]</div>
+        <h3 class="prod-name">[Product <em>4 name</em>]</h3>
+        <p class="prod-sub">[Pack · size · case count]</p>
+        <p class="prod-desc">[1–2 sentence description.]</p>
+        <a href="#" class="prod-link">[Spec sheet] <span class="arr">↓</span></a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+<!-- ==================== 05 · WHY LA SEGUNDA ==================== -->
+<section class="section why" id="why" data-screen-label="05 Why">
+  <div class="sec-head">
+    <div class="sec-num"><b>03</b>Why La Segunda</div>
+    <div>
+      <h2 class="sec-title">[Operational<br>reasons. <em>Four.</em>]</h2>
+      <p class="sec-lede">[Lede — frame the four cards below as the operational reasons foodservice buyers choose La Segunda over a commodity supplier.]</p>
+    </div>
+  </div>
+
+  <div class="why-grid">
+
+    <article class="why-card">
+      <div class="why-num">— 01</div>
+      <h3 class="why-h"><em>Consistency.</em></h3>
+      <p class="why-p">[2–3 sentence proof that every loaf is the same loaf — same flour, same fermentation, same split, same crumb. Specific operational language: lot-to-lot, week-to-week, year-to-year.]</p>
+      <div class="why-foot">[Anchor stat · e.g. <em>20,000+</em> loaves daily]</div>
+    </article>
+
+    <article class="why-card">
+      <div class="why-num">— 02</div>
+      <h3 class="why-h"><em>Heritage.</em></h3>
+      <p class="why-p">[2–3 sentences on the 1915 founding, Ybor City origin, family ownership across four generations. Keep it buyer-relevant — heritage = recipe stability, not nostalgia.]</p>
+      <div class="why-foot">[Anchor stat · e.g. <em>110</em> years · 4th gen.]</div>
+    </article>
+
+    <article class="why-card">
+      <div class="why-num">— 03</div>
+      <h3 class="why-h"><em>Scale.</em></h3>
+      <p class="why-p">[2–3 sentences on production capacity, frozen logistics, and the ability to absorb volume swings for multi-unit operators.]</p>
+      <div class="why-foot">[Anchor stat · e.g. <em>270</em>-day shelf life frozen]</div>
+    </article>
+
+    <article class="why-card">
+      <div class="why-num">— 04</div>
+      <h3 class="why-h">Distribution <em>readiness.</em></h3>
+      <p class="why-p">[2–3 sentences on existing broadline distributor relationships (Sysco, US Foods, PFG, GFS, Cheney, Ben E. Keith) and the speed-to-shelf advantage that creates for a new wholesale account.]</p>
+      <div class="why-foot">[Anchor stat · e.g. <em>46</em> distributor locations · 35+ states]</div>
+    </article>
+
+  </div>
+</section>
+
+
+<!-- ==================== 06 · WHOLESALE PROCESS ==================== -->
+<section class="section process" id="process" data-screen-label="06 Process">
+  <div class="sec-head">
+    <div class="sec-num"><b>04</b>Process</div>
+    <div>
+      <h2 class="sec-title">[How a<br>wholesale<br>account <em>starts.</em>]</h2>
+      <p class="sec-lede">[Lede — four steps from first inquiry to first shipment. Plain B2B language, no salesy varnish.]</p>
+    </div>
+  </div>
+
+  <div class="process-list">
+
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3 class="step-title"><em>Inquiry.</em></h3>
+      <p class="step-desc">[Description of how a buyer initiates contact — direct email or phone to Giuseppe, no portal, no gatekeeper.]</p>
+      <div class="step-meta">— <b>Day 0</b></div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3 class="step-title"><em>Review.</em></h3>
+      <p class="step-desc">[What happens after the inquiry — volume estimate, current distributor relationship, geography, product fit. A short discovery conversation, not a 12-stage qualification funnel.]</p>
+      <div class="step-meta">— <b>24 hours</b></div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3 class="step-title">Pricing <em>&amp; sampling.</em></h3>
+      <p class="step-desc">[How pricing is quoted — by volume tier, with samples shipped if requested. Note that pricing is quote-driven, not list-published, because foodservice volume varies by account.]</p>
+      <div class="step-meta">— <b>Within 1 week</b></div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">04</div>
+      <h3 class="step-title">Ordering <em>&amp; distribution.</em></h3>
+      <p class="step-desc">[How the first order flows — through an existing broadline distributor where one exists, or via direct wholesale where it doesn't. Frozen, thaw-and-serve, palletized.]</p>
+      <div class="step-meta">— <b>Ongoing</b></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ==================== 07 · HERITAGE / PROOF ==================== -->
+<section class="section heritage" id="heritage" data-screen-label="07 Heritage">
+  <div class="sec-head">
+    <div class="sec-num"><b>05</b>Heritage</div>
+    <h2 class="sec-title">[Since <em>1915.</em><br>Same recipe.]</h2>
+  </div>
+
+  <div class="heritage-grid">
+    <div></div>
+    <p class="heritage-lead">
+      [Lead paragraph — one or two editorial sentences anchoring the 1915 founding in Ybor City. Italicize a single buyer-relevant phrase in red to match the section vocabulary, e.g. <em>a defining name</em> in Tampa-style Cuban bread.]
+    </p>
+    <div class="heritage-body">
+      <p>[Body paragraph 1 — the palmetto-leaf split, the slow fermentation, the high-gluten spring wheat flour. Buyer-focused: recipe stability, not nostalgia.]</p>
+      <p>[Body paragraph 2 — what's changed and what hasn't. <strong>One bolded operational sentence</strong> that links the heritage back to today's wholesale buyer.]</p>
+    </div>
+  </div>
+
+  <div class="heritage-meta">
+    <div class="heritage-meta-item">
+      <div class="heritage-meta-k">— Founded</div>
+      <div class="heritage-meta-v"><em>1915</em>, Ybor City</div>
+    </div>
+    <div class="heritage-meta-item">
+      <div class="heritage-meta-k">— Founder</div>
+      <div class="heritage-meta-v">[Founder name]</div>
+    </div>
+    <div class="heritage-meta-item">
+      <div class="heritage-meta-k">— Ownership</div>
+      <div class="heritage-meta-v">Family, <em>4th</em> Gen.</div>
+    </div>
+    <div class="heritage-meta-item">
+      <div class="heritage-meta-k">— Production</div>
+      <div class="heritage-meta-v">[20,000+] / <em>day</em></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==================== 08 · FAQ ==================== -->
+<section class="section faq" id="faq" data-screen-label="08 FAQ" aria-label="Wholesale Cuban bread FAQ">
+  <div class="sec-head">
+    <div class="sec-num"><b>06</b>FAQ</div>
+    <div>
+      <h2 class="sec-title">[FAQ section<br>headline, <em>two lines.</em>]</h2>
+      <p class="sec-lede">[Lede — frame the questions below as the ones foodservice operators, distributors, and wholesale buyers ask first.]</p>
+    </div>
+  </div>
+
+  <div class="faq-list">
+
+    <details class="faq-item">
+      <summary><h3>[Question 1 — bracket-and-italic <em>the key phrase</em>?]</h3><span class="faq-mark" aria-hidden="true">+</span></summary>
+      <p>[Answer 1 — 1–3 sentences, plain language, no salesy phrasing. Link to a deeper page if helpful: <a href="#">[link text]</a>.]</p>
+    </details>
+
+    <details class="faq-item">
+      <summary><h3>[Question 2 — italicize the <em>buyer-search</em> phrase?]</h3><span class="faq-mark" aria-hidden="true">+</span></summary>
+      <p>[Answer 2.]</p>
+    </details>
+
+    <details class="faq-item">
+      <summary><h3>[Question 3 about <em>wholesale products</em>?]</h3><span class="faq-mark" aria-hidden="true">+</span></summary>
+      <p>[Answer 3.]</p>
+    </details>
+
+    <details class="faq-item">
+      <summary><h3>[Question 4 about <em>wholesale pricing</em>?]</h3><span class="faq-mark" aria-hidden="true">+</span></summary>
+      <p>[Answer 4.]</p>
+    </details>
+
+    <details class="faq-item">
+      <summary><h3>[Question 5 about <em>distributors</em>?]</h3><span class="faq-mark" aria-hidden="true">+</span></summary>
+      <p>[Answer 5.]</p>
+    </details>
+
+    <details class="faq-item">
+      <summary><h3>[Question 6 — the differentiation <em>question</em>?]</h3><span class="faq-mark" aria-hidden="true">+</span></summary>
+      <p>[Answer 6.]</p>
+    </details>
+
+  </div>
+</section>
+
+
+<!-- ==================== 09 · FINAL CTA (DARK) ==================== -->
+<section class="final-cta" id="final-cta" data-screen-label="09 Final CTA">
+  <div class="final-inner">
+    <div class="final-num"><b>07</b>Wholesale Inquiries</div>
+    <div>
+      <h2 class="final-title">Talk to <em>Giuseppe.</em><br>Pricing in <em>24 hours.</em></h2>
+      <p class="final-sub">[Final CTA supporting paragraph — name the wholesale desk lead, the response window, and the absence of portals/scripts. Keep it operator-to-operator in tone.]</p>
+    </div>
+    <div class="final-actions">
+      <a href="contact.html" class="btn btn-red">[Request wholesale pricing] <span class="arr">→</span></a>
+      <a href="mailto:giuseppe@cubanbread.com" class="btn btn-ghost">[Email Giuseppe] <span class="arr">→</span></a>
+    </div>
+  </div>
+
+  <div class="final-meta">
+    <div class="final-meta-item">
+      <div class="final-meta-k">— National Sales</div>
+      <div class="final-meta-v">[Giuseppe <em>Bua</em>]</div>
+    </div>
+    <div class="final-meta-item">
+      <div class="final-meta-k">— Direct Line</div>
+      <div class="final-meta-v"><a href="tel:+18138106920">[+1 (813) 810-6920]</a></div>
+    </div>
+    <div class="final-meta-item">
+      <div class="final-meta-k">— Email</div>
+      <div class="final-meta-v"><a href="mailto:giuseppe@cubanbread.com">[giuseppe@cubanbread.com]</a></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="foot">
+  <div class="foot-top">
+    <div>
+      <a href="index.html" class="foot-brand" aria-label="La Segunda Central Bakery">
+        <img src="assets/logo-word.png" alt="La Segunda" class="foot-brand-word"/>
+      </a>
+      <p class="foot-address">
+        2512 N. 15th Street<br>
+        Ybor City · Tampa, FL 33605<br>
+        <br>
+        <a href="mailto:giuseppe@cubanbread.com">giuseppe@cubanbread.com</a><br>
+        +1 (813) 810-6920
+      </p>
+    </div>
+    <div class="foot-col">
+      <h5>Products</h5>
+      <ul>
+        <li><a href="products.html#cuban-bread">Cuban Bread (18" &amp; 36")</a></li>
+        <li><a href="products.html#honey-wheat">Honey Wheat</a></li>
+        <li><a href="products.html#media-noche">Media Noche</a></li>
+        <li><a href="products.html#coca-buns">Coca Buns</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Distribution</h5>
+      <ul>
+        <li><a href="distribution.html#sysco">Sysco</a></li>
+        <li><a href="distribution.html#us-foods">US Foods</a></li>
+        <li><a href="distribution.html#cheney">Cheney Brothers</a></li>
+        <li><a href="distribution.html#gfs">GFS (Gordon Food Service)</a></li>
+        <li><a href="distribution.html#pfg">PFG (Performance Food Group)</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="our-story.html">Our Story</a></li>
+        <li><a href="contact.html">Contact Giuseppe</a></li>
+        <li><a href="https://www.lasegundabakery.com/" target="_blank" rel="noopener">Retail Bakery &amp; Café ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div>© 1915–2026 · La Segunda Central Bakery · Ybor City, Tampa</div>
+    <div>Wholesale &amp; Foodservice · <a href="https://www.lasegundabakery.com/" target="_blank" rel="noopener">Retail at LaSegundaBakery.com ↗</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

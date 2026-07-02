@@ -1,8 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.cubanbread.com/</loc><lastmod>2025-04-01</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://www.cubanbread.com/our-story</loc><lastmod>2025-04-01</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.cubanbread.com/products</loc><lastmod>2025-04-01</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.cubanbread.com/distribution</loc><lastmod>2025-04-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.cubanbread.com/contact</loc><lastmod>2025-04-01</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.cubanbread.com/</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.cubanbread.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cubanbread.com/"/>
+  </url>
+  <url>
+    <loc>https://www.cubanbread.com/our-story.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.cubanbread.com/products.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.cubanbread.com/distribution.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.cubanbread.com/distribution.html"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://www.cubanbread.com/es/distribution.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cubanbread.com/distribution.html"/>
+  </url>
+  <url>
+    <loc>https://www.cubanbread.com/contact.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.cubanbread.com/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://www.cubanbread.com/es/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cubanbread.com/contact.html"/>
+  </url>
+  <url>
+    <loc>https://www.cubanbread.com/es/distribution.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.cubanbread.com/distribution.html"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://www.cubanbread.com/es/distribution.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cubanbread.com/distribution.html"/>
+  </url>
+  <url>
+    <loc>https://www.cubanbread.com/es/contact.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.cubanbread.com/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://www.cubanbread.com/es/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cubanbread.com/contact.html"/>
+  </url>
+  <url>
+    <loc>https://www.cubanbread.com/blog/</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.cubanbread.com/blog/origin-of-cuban-bread-ybor-city.html</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.cubanbread.com/blog/thaw-and-serve-frozen-cuban-bread.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.cubanbread.com/blog/what-makes-real-cuban-sandwich.html</loc>
+    <lastmod>2026-03-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
