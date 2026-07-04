@@ -19,4 +19,4 @@ Disallow: /_source/
 Disallow: /scratch/
 Disallow: /uploads/
 
-Sitemap: https://www.cubanbread.com/sitemap.xml
+Sitemap: https://cubanbread.com/sitemap.xml
