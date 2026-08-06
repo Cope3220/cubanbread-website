@@ -652,9 +652,11 @@ section{position:relative}
 .prod-card.half .prod-img{aspect-ratio:16/10}
 
 .prod-img-label{
-  position:absolute;top:16px;left:16px;
-  font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(245,241,232,0.5);
+  position:absolute;top:16px;left:16px;z-index:2;
+  font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(245,241,232,0.72);
+  text-shadow:0 1px 6px rgba(13,13,13,0.85);
 }
+.prod-img::after{content:"";position:absolute;top:0;left:0;width:62%;height:38%;pointer-events:none;z-index:1;background:linear-gradient(to bottom right,rgba(13,13,13,0.5),rgba(13,13,13,0) 70%)}
 .prod-img-label::before{content:"◦ ";color:var(--red)}
 
 /* simulated food hero for wide card */
@@ -1282,7 +1284,7 @@ section{position:relative}
     <!-- 3 TAMPA-LOCAL CARDS (fresh-daily) -->
     <article class="prod-card third">
       <div class="prod-img">
-        <img src="assets/deli-variety.jpg" alt="Cross-section slices of pumpernickel, rye, marble, and sourdough deli loaves arranged on a wooden bench against a dark background." style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+        <img src="assets/deli-variety-v2.jpg" alt="Cross-section slices of pumpernickel, rye, marble, and sourdough deli loaves arranged on a wooden bench against a dark background." style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
         <div class="prod-img-label">Bucket Breads</div>
       </div>
       <div class="prod-body">
@@ -1296,7 +1298,7 @@ section{position:relative}
 
     <article class="prod-card third">
       <div class="prod-img">
-        <img src="assets/hoagie-rolls.jpg" alt="A stack of fresh 8-inch and 12-inch hoagie rolls in soft warm bakery light against a deep shadow background." style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"/>
+        <img src="assets/hoagie-rolls-v3.jpg" alt="A stack of fresh 8-inch and 12-inch hoagie rolls in soft warm bakery light against a deep shadow background." style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"/>
         <div class="prod-img-label">Hoagies</div>
       </div>
       <div class="prod-body">
