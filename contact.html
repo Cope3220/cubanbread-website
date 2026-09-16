@@ -885,6 +885,18 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
      source          -> source         (hardcoded "Website")
      recaptcha_token -> verified server-side, not stored
      submitted_at    -> server auto-generates (not sent)
+
+   Google Ads / campaign attribution (added 2026-09):
+     gclid, gbraid, wbraid, utm_source, utm_medium, utm_campaign,
+     utm_content, utm_term, matchtype, network
+                     -> same-named columns; always sent, '' when unknown
+                        (gbraid/wbraid replace gclid on iOS app-to-web clicks)
+     attr_captured_at  -> when the click params were first seen (ISO 8601)
+     attr_landing_page -> the URL they arrived on
+
+   These come from the first-touch record that assets/site.js writes to
+   localStorage on whatever page the ad dropped the visitor, NOT from the
+   URL of this page — most leads land on the homepage and convert here.
 ============================================================ */
 
 const LEAD_ENDPOINT = 'https://salespower-production.up.railway.app/api/website-lead';
@@ -969,6 +981,14 @@ leadForm.addEventListener('submit', async function(e){
     messageText
   ].filter(Boolean).join('\n\n');
 
+  // First-touch ad attribution, captured on the landing page by
+  // assets/site.js. Returns every field ('' when unknown), and falls back
+  // to all-empty if site.js never loaded — a lead must still go through.
+  const attr = (typeof window.lsbAttribution === 'function')
+    ? window.lsbAttribution()
+    : {};
+  const attrGet = n => (attr && typeof attr[n] === 'string') ? attr[n] : '';
+
   const payload = {
     company:         get('company_name'),   // mapped: company_name -> company
     contact_name:    get('contact_name'),
@@ -978,7 +998,21 @@ leadForm.addEventListener('submit', async function(e){
     state:           get('state'),
     notes:           notes,                  // mapped: message (+ business_type) -> notes
     source:          get('source'),          // hidden field — "Website"
-    recaptcha_token: recaptchaToken          // server verifies, doesn't store
+    recaptcha_token: recaptchaToken,         // server verifies, doesn't store
+
+    // Google Ads / campaign attribution — always present, '' when unknown
+    gclid:             attrGet('gclid'),
+    gbraid:            attrGet('gbraid'),
+    wbraid:            attrGet('wbraid'),
+    utm_source:        attrGet('utm_source'),
+    utm_medium:        attrGet('utm_medium'),
+    utm_campaign:      attrGet('utm_campaign'),
+    utm_content:       attrGet('utm_content'),
+    utm_term:          attrGet('utm_term'),
+    matchtype:         attrGet('matchtype'),
+    network:           attrGet('network'),
+    attr_captured_at:  attrGet('captured_at'),
+    attr_landing_page: attrGet('landing_page')
   };
 
   try {
@@ -1068,6 +1102,6 @@ leadForm.addEventListener('submit', async function(e){
   else init();
 })();
 </script>
-<script src="assets/site.js?v=4"></script>
+<script src="assets/site.js?v=5"></script>
 </body>
 </html>

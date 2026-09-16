@@ -100,3 +100,119 @@
     init();
   }
 })();
+
+/* ============================================================
+   La Segunda · Google Ads / campaign click attribution
+   Runs on every page (this file is loaded site-wide, EN and es/).
+
+   A visitor usually lands from an ad on one page and converts on
+   another, so the ad-click params are stashed on first sight and
+   read back at submit time by the lead form — never off the URL
+   that happens to be in the bar when they hit Send.
+
+   Storage:  localStorage["lsb_attr"], a JSON record holding the
+             ten click params plus captured_at (ISO 8601) and
+             landing_page (the full URL the params arrived on).
+   Rule:     first touch wins — an existing, unexpired record is
+             never overwritten.
+   Expiry:   90 days after captured_at; a stale record is dropped
+             and the next ad click starts a fresh one.
+
+   Read it with window.lsbAttribution(): always returns every
+   field, using '' for anything unknown, so callers can spread it
+   into a payload without null checks.
+
+   All storage access is wrapped — Safari private mode and blocked
+   third-party-storage contexts throw on localStorage access, and
+   attribution must never take a form submit down with it.
+============================================================ */
+(function () {
+  'use strict';
+
+  var STORAGE_KEY = 'lsb_attr';
+  var TTL_MS = 90 * 24 * 60 * 60 * 1000; // 90 days
+  var MAX_LEN = 500; // defensive cap; real gclids run ~90 chars
+
+  var PARAMS = [
+    'gclid',
+    'utm_source',
+    'utm_medium',
+    'utm_campaign',
+    'utm_content',
+    'utm_term',
+    'matchtype',
+    'network',
+    // Google sends gbraid/wbraid in place of gclid for iOS app-to-web
+    // clicks, where ATT blocks the gclid. Same job, different param.
+    'gbraid',
+    'wbraid'
+  ];
+
+  function blankRecord() {
+    var rec = {};
+    PARAMS.forEach(function (k) { rec[k] = ''; });
+    rec.captured_at = '';
+    rec.landing_page = '';
+    return rec;
+  }
+
+  function rawRecord() {
+    try { return window.localStorage.getItem(STORAGE_KEY); } catch (_) { return null; }
+  }
+
+  function dropRecord() {
+    try { window.localStorage.removeItem(STORAGE_KEY); } catch (_) {}
+  }
+
+  // Returns the stored record, or null if absent, unreadable, or expired.
+  function readRecord() {
+    var raw = rawRecord();
+    if (!raw) return null;
+
+    var rec;
+    try { rec = JSON.parse(raw); } catch (_) { return null; }
+    if (!rec || typeof rec !== 'object') return null;
+
+    var at = Date.parse(rec.captured_at);
+    if (!at || (Date.now() - at) > TTL_MS) return null;
+
+    return rec;
+  }
+
+  function capture() {
+    var params;
+    try { params = new URLSearchParams(window.location.search); } catch (_) { return; }
+
+    var rec = blankRecord();
+    var found = false;
+    PARAMS.forEach(function (k) {
+      var v = params.get(k);
+      if (v) { rec[k] = String(v).slice(0, MAX_LEN); found = true; }
+    });
+
+    var existing = readRecord();
+
+    // Clear a record that's expired or corrupt so it can't be read back
+    // half-alive and so the next ad click isn't blocked by it.
+    if (!existing && rawRecord()) dropRecord();
+
+    if (!found) return;   // ordinary page view — nothing to attribute
+    if (existing) return; // first touch wins
+
+    rec.captured_at = new Date().toISOString();
+    rec.landing_page = window.location.href;
+
+    try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(rec)); } catch (_) {}
+  }
+
+  window.lsbAttribution = function () {
+    var stored = readRecord() || {};
+    var out = blankRecord();
+    Object.keys(out).forEach(function (k) {
+      if (typeof stored[k] === 'string') out[k] = stored[k];
+    });
+    return out;
+  };
+
+  capture();
+})();

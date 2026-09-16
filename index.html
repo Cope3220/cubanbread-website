@@ -898,6 +898,61 @@ section{position:relative}
   transition:background .2s;display:flex;align-items:center;justify-content:space-between;
 }
 .cta-form button:hover{background:var(--red-ink)}
+.cta-form button[disabled]{opacity:0.6;cursor:default}
+.cta-form button[disabled]:hover{background:var(--red)}
+
+/* CTA form validation + submit states — mirrors the .lf-* set on contact.html */
+.cta-form .field.invalid input,
+.cta-form .field.invalid select{border-color:var(--red)}
+.cta-error{
+  display:none;
+  font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--red);margin-top:2px;
+}
+.field.invalid .cta-error{display:block}
+.cta-recaptcha{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.cta-recaptcha.invalid .cta-error{display:block}
+/* The v2 widget is a fixed 302px; the CTA panel is narrower than that on
+   small phones, so scale it down rather than let it break the layout. */
+@media (max-width:420px){
+  .cta-recaptcha{overflow:hidden}
+  .cta-recaptcha .g-recaptcha{transform:scale(0.8);transform-origin:0 0;height:61px}
+}
+@media (max-width:360px){
+  .cta-recaptcha .g-recaptcha{transform:scale(0.7);height:54px}
+}
+.cta-form-error{
+  display:none;
+  background:rgba(238,53,37,0.1);border:1px solid var(--red);
+  padding:12px 14px;
+  font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--red);line-height:1.65;
+}
+.cta-form-error a{color:var(--red);text-decoration:underline}
+.cta-form-error.show{display:block}
+.cta-disclaimer{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--cream-mute);text-align:center;margin:0;
+}
+.cta-success{
+  background:var(--ink);border:1px solid var(--red);
+  padding:48px 32px;text-align:center;
+  display:none;flex-direction:column;align-items:center;gap:16px;
+  box-shadow:0 20px 40px -10px rgba(0,0,0,0.4);
+}
+.cta-success.show{display:flex}
+.cta-success-mark{
+  width:60px;height:60px;border:1px solid var(--red);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--red);font-size:30px;font-family:var(--display);font-style:italic;
+}
+.cta-success h4{
+  font-family:var(--display);font-weight:400;font-size:28px;line-height:1.15;
+  color:var(--cream);margin:0;letter-spacing:-0.01em;
+}
+.cta-success h4 em{font-style:italic;color:var(--red)}
+.cta-success p{font-size:14px;line-height:1.6;color:var(--cream-dim);margin:0;max-width:34ch}
+.cta-success p a{color:var(--red);text-decoration:underline}
 
 /* ========== FOOTER ========== */
 .foot{background:var(--ink);padding:80px 56px 40px}
@@ -993,6 +1048,7 @@ section{position:relative}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <link rel="stylesheet" href="assets/site.css?v=6"/>
 <script src="assets/i18n.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/favicon.png">
 </head>
@@ -1538,13 +1594,15 @@ section{position:relative}
       <p class="cta-sub" data-es="La misma receta desde 1915. La misma familia que la hornea. Giuseppe Bua, nuestro Gerente Nacional de Ventas, dirige el área mayorista — sin intermediarios, sin guiones. Cuéntenos qué necesita y lo conectaremos con un programa que tenga sentido para su volumen.">Same recipe since 1915. Same family that bakes it. Giuseppe Bua, our National Sales Manager, runs the wholesale desk — no gatekeepers, no scripts. Tell us what you need and we'll match it to a program that makes sense for your volume.</p>
     </div>
 
-    <form class="cta-form" name="wholesale-quick" method="POST" data-netlify="true" onsubmit="event.preventDefault(); this.querySelector('button').innerText = 'Thanks \u2014 we\u2019ll be in touch'; this.querySelector('button').style.background='#0d0d0d';">
-      <input type="hidden" name="form-name" value="wholesale-quick"/>
+    <!-- Wholesale quick-request. POSTs the same JSON shape as the full form on
+         contact.html to the SalesPower intake endpoint; see the handler below. -->
+    <form id="ctaForm" class="cta-form" novalidate>
       <input type="hidden" name="source" value="Homepage CTA band"/>
       <h4 data-es="— Solicitud de Precios Mayoristas">— Wholesale Pricing Request</h4>
       <div class="field">
         <label for="company" data-es="Empresa<b>*</b>">Company<b>*</b></label>
         <input id="company" name="company_name" type="text" autocomplete="organization" placeholder="Restaurant, grocery, distributor…" data-es-placeholder="Restaurante, tienda, distribuidor…" required/>
+        <span class="cta-error" data-es="Por favor ingrese el nombre de su empresa.">Please enter your company name.</span>
       </div>
       <div class="field">
         <label for="volume" data-es="Volumen Semanal Estimado">Estimated Weekly Volume</label>
@@ -1559,13 +1617,35 @@ section{position:relative}
       <div class="field">
         <label for="email" data-es="Correo Electrónico<b>*</b>">Email<b>*</b></label>
         <input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required/>
+        <span class="cta-error" data-es="Por favor ingrese un correo válido.">Please enter a valid email.</span>
       </div>
       <div class="field">
         <label for="phone" data-es="Teléfono<b>*</b>">Phone<b>*</b></label>
         <input id="phone" name="phone" type="tel" placeholder="(555) 123-4567" autocomplete="tel" required/>
+        <span class="cta-error" data-es="Por favor ingrese un número de teléfono.">Please enter a phone number.</span>
       </div>
+
+      <!-- Same live site key as contact.html — the intake endpoint is
+           reCAPTCHA-gated, so a lead without a token gets rejected. -->
+      <div class="cta-recaptcha">
+        <div class="g-recaptcha" data-sitekey="6Lf0RUMtAAAAAOVoZ1cn2eCcSx1aLS4VMYuEbnXS" data-theme="dark"></div>
+        <span class="cta-error" data-es="Por favor confirme que no es un robot.">Please confirm you're not a robot.</span>
+      </div>
+
+      <div id="ctaFormError" class="cta-form-error" role="alert" data-es='Ocurrió un error al enviar su solicitud. Inténtelo de nuevo, o llame al <a href=&quot;tel:+18138106920&quot;>813-810-6920</a>.'>
+        Something went wrong sending your request. Please try again, or call <a href="tel:+18138106920">813-810-6920</a>.
+      </div>
+
       <button type="submit"><span data-es="Solicitar Precios">Request Pricing</span> <span>→</span></button>
+      <p class="cta-disclaimer" data-es="Va directo a Giuseppe · Sin spam, nunca">Goes straight to Giuseppe · No spam, ever</p>
     </form>
+
+    <!-- success state (replaces the form in the grid cell) -->
+    <div id="ctaSuccess" class="cta-success">
+      <div class="cta-success-mark">✓</div>
+      <h4 data-es="Gracias.<br><em>Giuseppe le responderá en 24 horas.</em>">Thanks.<br><em>Giuseppe will follow up within 24 hours.</em></h4>
+      <p data-es='¿Lo necesita más rápido? Llame al <a href=&quot;tel:+18138106920&quot;>813-810-6920</a> — él contesta.'>Need it faster? Call <a href="tel:+18138106920">813-810-6920</a> — he picks up.</p>
+    </div>
   </div>
 </section>
 
@@ -1744,6 +1824,154 @@ section{position:relative}
   else init();
 })();
 </script>
-<script src="assets/site.js?v=4"></script>
+<script>
+/* ============================================================
+   HOMEPAGE CTA LEAD FORM
+   Was a data-netlify form that POSTed nowhere (the site is on
+   GitHub Pages, not Netlify) — every submission was dropped on
+   the floor after a fake "thanks" swap on the button.
+
+   Now posts the same JSON shape as the full form on contact.html
+   to the same endpoint. This form only asks for four fields, so
+   contact_name / city / state go up empty and Giuseppe collects
+   them on the follow-up call; weekly_volume folds into notes,
+   the way business_type does on contact.html.
+
+   Endpoint: POST https://salespower-production.up.railway.app/api/website-lead
+============================================================ */
+(function(){
+  'use strict';
+
+  var LEAD_ENDPOINT = 'https://salespower-production.up.railway.app/api/website-lead';
+
+  var form = document.getElementById('ctaForm');
+  if (!form) return;
+  var success   = document.getElementById('ctaSuccess');
+  var formError = document.getElementById('ctaFormError');
+
+  var REQUIRED = ['company_name','email','phone'];
+
+  function isEs(){
+    try { return !!(window.SiteLang && window.SiteLang.get() === 'es'); }
+    catch(_) { return false; }
+  }
+
+  function field(name){
+    var el = form.querySelector('[name="' + name + '"]');
+    return el ? el.closest('.field') : null;
+  }
+  function setFieldError(name, bad){
+    var f = field(name);
+    if (f) f.classList.toggle('invalid', !!bad);
+  }
+  function get(name){
+    var el = form.querySelector('[name="' + name + '"]');
+    return el ? (el.value || '').trim() : '';
+  }
+
+  function validate(){
+    var ok = true, firstInvalid = null;
+
+    REQUIRED.forEach(function(name){
+      var el  = form.querySelector('[name="' + name + '"]');
+      var val = (el && el.value || '').trim();
+      var bad = !val;
+      if (!bad && name === 'email') bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      setFieldError(name, bad);
+      if (bad){ ok = false; firstInvalid = firstInvalid || el; }
+    });
+
+    var wrap = form.querySelector('.cta-recaptcha');
+    var captchaOk = false;
+    try {
+      captchaOk = typeof grecaptcha !== 'undefined' && grecaptcha.getResponse && grecaptcha.getResponse().length > 0;
+    } catch(_) { captchaOk = false; }
+    if (wrap) wrap.classList.toggle('invalid', !captchaOk);
+    if (!captchaOk){ ok = false; firstInvalid = firstInvalid || wrap; }
+
+    if (firstInvalid && firstInvalid.focus){
+      try { firstInvalid.focus({preventScroll:false}); } catch(_) { firstInvalid.focus(); }
+    }
+    return ok;
+  }
+
+  // Clear field errors as they're fixed
+  REQUIRED.forEach(function(name){
+    var el = form.querySelector('[name="' + name + '"]');
+    if (!el) return;
+    var clear = function(){ setFieldError(name, false); };
+    el.addEventListener('input', clear);
+    el.addEventListener('change', clear);
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    formError.classList.remove('show');
+    if (!validate()) return;
+
+    var btn = form.querySelector('button[type="submit"]');
+    var originalLabel = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<span>' + (isEs() ? 'Enviando…' : 'Sending…') + '</span> <span>→</span>';
+
+    var recaptchaToken = '';
+    try { recaptchaToken = (typeof grecaptcha !== 'undefined' && grecaptcha.getResponse()) || ''; } catch(_) {}
+
+    // weekly_volume has no column in SalesPower's leads table — same
+    // treatment business_type gets on contact.html.
+    var volume = get('weekly_volume');
+    var notes  = volume ? 'Estimated Weekly Volume: ' + volume : '';
+
+    // First-touch ad attribution captured by assets/site.js on whatever
+    // page the click landed. Empty record if site.js never loaded.
+    var attr = (typeof window.lsbAttribution === 'function') ? window.lsbAttribution() : {};
+    function attrGet(n){ return (attr && typeof attr[n] === 'string') ? attr[n] : ''; }
+
+    var payload = {
+      company:         get('company_name'),
+      contact_name:    '',                  // not asked for on the quick form
+      email:           get('email'),
+      phone:           get('phone'),
+      city:            '',                  // not asked for on the quick form
+      state:           '',                  // not asked for on the quick form
+      notes:           notes,
+      source:          get('source'),       // hidden field — "Homepage CTA band"
+      recaptcha_token: recaptchaToken,
+
+      // Google Ads / campaign attribution — always present, '' when unknown
+      gclid:             attrGet('gclid'),
+      gbraid:            attrGet('gbraid'),
+      wbraid:            attrGet('wbraid'),
+      utm_source:        attrGet('utm_source'),
+      utm_medium:        attrGet('utm_medium'),
+      utm_campaign:      attrGet('utm_campaign'),
+      utm_content:       attrGet('utm_content'),
+      utm_term:          attrGet('utm_term'),
+      matchtype:         attrGet('matchtype'),
+      network:           attrGet('network'),
+      attr_captured_at:  attrGet('captured_at'),
+      attr_landing_page: attrGet('landing_page')
+    };
+
+    fetch(LEAD_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function(res){
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      form.style.display = 'none';
+      success.classList.add('show');
+      try { success.scrollIntoView({behavior:'smooth', block:'center'}); } catch(_) {}
+    }).catch(function(err){
+      console.error('Homepage lead submit failed:', err);
+      formError.classList.add('show');
+      btn.disabled = false;
+      btn.innerHTML = originalLabel;
+      try { if (typeof grecaptcha !== 'undefined') grecaptcha.reset(); } catch(_) {}
+    });
+  });
+})();
+</script>
+<script src="assets/site.js?v=5"></script>
 </body>
 </html>
