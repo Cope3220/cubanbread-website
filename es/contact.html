@@ -36,6 +36,9 @@
 
 <link rel="stylesheet" href="../assets/site.css?v=6">
 
+<!-- Google reCAPTCHA v2 -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 <!-- ============================================================
      SCHEMA · LocalBusiness / Bakery (ES)
 ============================================================ -->
@@ -156,6 +159,17 @@
 .lf-submit:hover .arr{transform:translateX(4px)}
 .lf-disclaimer{font-family:var(--mono);font-size:10px;letter-spacing:0.16em;color:var(--cream-mute);text-transform:uppercase;text-align:center;margin-top:4px}
 
+.lf-error{display:none;font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);margin-top:2px}
+.lf-field.invalid .lf-error{display:block}
+.lf-field.invalid input,.lf-field.invalid select,.lf-field.invalid textarea{border-color:var(--red)}
+
+.lf-recaptcha{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.lf-recaptcha.invalid .lf-error{display:block}
+
+.lf-form-error{display:none;background:rgba(193,39,45,0.08);border:1px solid var(--red);padding:14px 16px;font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--red);line-height:1.5}
+.lf-form-error a{color:var(--red);text-decoration:underline}
+.lf-form-error.show{display:block}
+
 .lf-success{background:var(--ink-2);border:1px solid var(--red);padding:64px 44px;text-align:center;display:none;flex-direction:column;align-items:center;gap:20px}
 .lf-success.show{display:flex}
 .lf-success-mark{width:72px;height:72px;border:1px solid var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--red);font-size:36px;font-family:var(--display);font-style:italic}
@@ -274,86 +288,133 @@
   <div>
     <form id="leadForm" class="lead-form" novalidate>
       <h2>Solicitar <em>Precio Mayorista</em></h2>
-      <p class="lead-form-sub">10 campos · 60 segundos · Sin lista de precios, sin portal — solo Giuseppe</p>
+      <p class="lead-form-sub">7 campos · 60 segundos · Sin lista de precios, sin portal — solo Giuseppe</p>
 
-      <div class="lf-row">
-        <div class="lf-field">
-          <label for="lf-fname">Nombre<b>*</b></label>
-          <input id="lf-fname" name="first_name" type="text" autocomplete="given-name" required/>
-        </div>
-        <div class="lf-field">
-          <label for="lf-lname">Apellido<b>*</b></label>
-          <input id="lf-lname" name="last_name" type="text" autocomplete="family-name" required/>
-        </div>
+      <!-- hidden source field -->
+      <input type="hidden" name="source" value="Website"/>
+
+      <div class="lf-field">
+        <label for="lf-company">Nombre de la Empresa<b>*</b></label>
+        <input id="lf-company" name="company_name" type="text" autocomplete="organization" required/>
+        <span class="lf-error" data-error-for="company_name">Por favor ingrese el nombre de su empresa.</span>
       </div>
 
       <div class="lf-field">
-        <label for="lf-business">Nombre del Negocio<b>*</b></label>
-        <input id="lf-business" name="business_name" type="text" autocomplete="organization" required/>
-      </div>
-
-      <div class="lf-field">
-        <label for="lf-type">Tipo de Negocio<b>*</b></label>
-        <select id="lf-type" name="business_type" required>
-          <option value="">Seleccione su tipo de operación…</option>
-          <option>Restaurante — Una sola ubicación</option>
-          <option>Grupo Restaurantero — Varias unidades</option>
-          <option>Distribuidor de Servicio de Alimentos</option>
-          <option>Cadena de Supermercados / Retail</option>
-          <option>Café / Cafetería</option>
-          <option>Servicio de Catering</option>
-          <option>Escuela / Hospital / Institucional</option>
-          <option>Hotel</option>
-          <option>Otro</option>
-        </select>
+        <label for="lf-contact">Nombre de Contacto<b>*</b></label>
+        <input id="lf-contact" name="contact_name" type="text" autocomplete="name" required/>
+        <span class="lf-error" data-error-for="contact_name">Por favor ingrese su nombre.</span>
       </div>
 
       <div class="lf-row">
         <div class="lf-field">
           <label for="lf-email">Correo Electrónico<b>*</b></label>
           <input id="lf-email" name="email" type="email" autocomplete="email" required/>
+          <span class="lf-error" data-error-for="email">Por favor ingrese un correo válido.</span>
         </div>
         <div class="lf-field">
-          <label for="lf-phone">Teléfono</label>
-          <input id="lf-phone" name="phone" type="tel" autocomplete="tel"/>
+          <label for="lf-phone">Teléfono<b>*</b></label>
+          <input id="lf-phone" name="phone" type="tel" autocomplete="tel" required/>
+          <span class="lf-error" data-error-for="phone">Por favor ingrese un número de teléfono.</span>
         </div>
       </div>
 
       <div class="lf-field">
-        <label for="lf-zip">Código Postal de Entrega<b>*</b></label>
-        <input id="lf-zip" name="delivery_zip" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" placeholder="33605" required/>
-      </div>
-
-      <div class="lf-field">
-        <label>Productos de Interés <small style="font-weight:400;letter-spacing:0.18em;color:var(--cream-mute);"> · seleccione todos los que apliquen</small></label>
-        <div class="lf-multi">
-          <label class="lf-check"><input type="checkbox" name="products" value="Pan Cubano 18&quot;"/> Pan Cubano 18"</label>
-          <label class="lf-check"><input type="checkbox" name="products" value="Pan Cubano 36&quot;"/> Pan Cubano 36"</label>
-          <label class="lf-check"><input type="checkbox" name="products" value="Honey Wheat 18&quot;"/> Honey Wheat 18"</label>
-          <label class="lf-check"><input type="checkbox" name="products" value="Pan para Media Noche"/> Pan para Media Noche</label>
-          <label class="lf-check"><input type="checkbox" name="products" value="Pan de Coca 4&quot;"/> Pan de Coca 4"</label>
-          <label class="lf-check"><input type="checkbox" name="products" value="Hoagie Roll de Tampa (Fresco Local)"/> Hoagie Roll de Tampa</label>
-          <label class="lf-check"><input type="checkbox" name="products" value="Panes Deli y Bucket"/> Panes Deli &amp; Bucket</label>
-          <label class="lf-check"><input type="checkbox" name="products" value="Aún no estoy seguro"/> Aún no estoy seguro</label>
-        </div>
-      </div>
-
-      <div class="lf-field">
-        <label for="lf-volume">Volumen Semanal Estimado</label>
-        <select id="lf-volume" name="weekly_volume">
-          <option value="">Estime cajas o panes por semana…</option>
-          <option>Menos de 5 cajas / semana</option>
-          <option>5–15 cajas / semana</option>
-          <option>15–50 cajas / semana</option>
-          <option>50–200 cajas / semana</option>
-          <option>200+ cajas / semana</option>
-          <option>No estoy seguro — hablemos</option>
+        <label for="lf-biztype">Tipo de Negocio<b>*</b></label>
+        <select id="lf-biztype" name="business_type" required>
+          <option value="">Seleccione el tipo de negocio…</option>
+          <option value="Restaurante">Restaurante</option>
+          <option value="Sandwichería / Café">Sandwichería / Café</option>
+          <option value="Hotel / Resort">Hotel / Resort</option>
+          <option value="Club de Campo">Club de Campo</option>
+          <option value="Servicio de Banquetes">Servicio de Banquetes</option>
+          <option value="Distribuidor">Distribuidor</option>
+          <option value="Escuela / Institucional">Escuela / Institucional</option>
+          <option value="Otro">Otro</option>
         </select>
+        <span class="lf-error" data-error-for="business_type">Por favor seleccione un tipo de negocio.</span>
+      </div>
+
+      <div class="lf-row">
+        <div class="lf-field">
+          <label for="lf-city">Ciudad<b>*</b></label>
+          <input id="lf-city" name="city" type="text" autocomplete="address-level2" required/>
+          <span class="lf-error" data-error-for="city">Por favor ingrese su ciudad.</span>
+        </div>
+        <div class="lf-field">
+          <label for="lf-state">Estado<b>*</b></label>
+          <select id="lf-state" name="state" autocomplete="address-level1" required>
+            <option value="">Seleccione un estado…</option>
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">Distrito de Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawái</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Luisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Misisipi</option>
+            <option value="MO">Misuri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">Nuevo Hampshire</option>
+            <option value="NJ">Nueva Jersey</option>
+            <option value="NM">Nuevo México</option>
+            <option value="NY">Nueva York</option>
+            <option value="NC">Carolina del Norte</option>
+            <option value="ND">Dakota del Norte</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregón</option>
+            <option value="PA">Pensilvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">Carolina del Sur</option>
+            <option value="SD">Dakota del Sur</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">Virginia Occidental</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+          </select>
+          <span class="lf-error" data-error-for="state">Por favor seleccione su estado.</span>
+        </div>
       </div>
 
       <div class="lf-field">
-        <label for="lf-msg">Mensaje</label>
+        <label for="lf-msg">Notas o Mensaje</label>
         <textarea id="lf-msg" name="message" placeholder="Cuéntenos sobre su operación — qué sirve, cuándo le gustaría empezar, y cualquier cosa que debamos saber."></textarea>
+      </div>
+
+      <!-- reCAPTCHA v2 — live site key (registered for cubanbread.com).
+           Secret key must be set in the SalesPower server env (Giuseppe). -->
+      <div class="lf-recaptcha">
+        <div class="g-recaptcha" data-sitekey="6Lf0RUMtAAAAAOVoZ1cn2eCcSx1aLS4VMYuEbnXS" data-theme="dark"></div>
+        <span class="lf-error" data-error-for="recaptcha">Por favor confirme que no es un robot.</span>
+      </div>
+
+      <!-- form-level error (network / submit failure) -->
+      <div id="leadFormError" class="lf-form-error" role="alert">
+        Ocurrió un error al enviar su consulta. Inténtelo de nuevo, o llame al <a href="tel:+18138106920">813-810-6920</a>.
       </div>
 
       <button type="submit" class="lf-submit">Enviar a Giuseppe <span class="arr">→</span></button>
@@ -362,7 +423,7 @@
 
     <div id="leadSuccess" class="lf-success">
       <div class="lf-success-mark">✓</div>
-      <h3>Gracias por escribirnos.<br><em>Giuseppe le responde en 24 horas.</em></h3>
+      <h3>Gracias por escribirnos.<br><em>Giuseppe le responderá en 24 horas.</em></h3>
       <p>¿Lo necesita más rápido? Llame al <a href="tel:+18138106920" style="color:var(--red);text-decoration:underline">813-810-6920</a> — él contesta.</p>
     </div>
   </div>
@@ -572,44 +633,177 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
   });
 });
 
-/* Lead form — placeholder behavior (mailto)
-   TODO: SalesPower integration — write CSV row to OneDrive/SalesPower/website-leads/inbox.csv
-*/
-document.getElementById('leadForm').addEventListener('submit', function(e){
+/* ============================================================
+   FORMULARIO DE CONTACTO
+   Valida los campos requeridos + reCAPTCHA, luego envía el JSON
+   al endpoint público de captura de leads de SalesPower.
+
+   Endpoint:  POST https://salespower-production.up.railway.app/api/website-lead
+   Owner:     Giuseppe Bua (SalesPower) — público, sin auth, protegido por recaptcha
+
+   Mapeo de campos (sitio web -> tabla de leads de SalesPower):
+     company_name    -> company        (renombrado)
+     contact_name    -> contact_name
+     email           -> email
+     phone           -> phone
+     city            -> city
+     state           -> state
+     business_type   -> incorporado en `notes` (no está en el esquema)
+     message         -> notes          (renombrado; combinado con business_type)
+     source          -> source         (fijo en "Website")
+     recaptcha_token -> verificado en el servidor, no se almacena
+     submitted_at    -> el servidor lo genera automáticamente (no se envía)
+
+   Atribución de Google Ads / campañas (agregado 2026-09):
+     gclid, gbraid, wbraid, utm_source, utm_medium, utm_campaign,
+     utm_content, utm_term, matchtype, network
+                     -> columnas del mismo nombre; siempre se envían, '' si se desconoce
+                        (gbraid/wbraid reemplazan a gclid en clics de app a web en iOS)
+     attr_captured_at  -> cuándo se vieron por primera vez los parámetros del clic (ISO 8601)
+     attr_landing_page -> la URL en la que aterrizó el visitante
+
+   Estos datos vienen del registro de primer contacto que assets/site.js
+   guarda en localStorage en la página donde el anuncio dejó al visitante,
+   NO de la URL de esta página — la mayoría de los leads aterrizan en la
+   página de inicio y convierten aquí.
+============================================================ */
+
+const LEAD_ENDPOINT = 'https://salespower-production.up.railway.app/api/website-lead';
+
+const leadForm = document.getElementById('leadForm');
+const leadSuccess = document.getElementById('leadSuccess');
+const leadFormError = document.getElementById('leadFormError');
+
+// nombres de los campos requeridos (en orden)
+const REQUIRED = ['company_name','contact_name','email','phone','business_type','city','state'];
+
+function setFieldError(name, hasError){
+  const input = leadForm.querySelector(`[name="${name}"]`);
+  if (!input) return;
+  const field = input.closest('.lf-field');
+  if (field) field.classList.toggle('invalid', !!hasError);
+}
+
+function validateForm(f){
+  let firstInvalid = null;
+  let ok = true;
+
+  REQUIRED.forEach(name => {
+    const input = f.querySelector(`[name="${name}"]`);
+    const val = (input && input.value || '').trim();
+    let bad = !val;
+    if (!bad && name === 'email'){
+      bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+    }
+    setFieldError(name, bad);
+    if (bad){ ok = false; firstInvalid = firstInvalid || input; }
+  });
+
+  // reCAPTCHA
+  const recaptchaWrap = f.querySelector('.lf-recaptcha');
+  let captchaOk = false;
+  try {
+    captchaOk = typeof grecaptcha !== 'undefined' && grecaptcha.getResponse && grecaptcha.getResponse().length > 0;
+  } catch(_) { captchaOk = false; }
+  if (recaptchaWrap) recaptchaWrap.classList.toggle('invalid', !captchaOk);
+  if (!captchaOk){ ok = false; firstInvalid = firstInvalid || recaptchaWrap; }
+
+  if (firstInvalid && firstInvalid.focus) {
+    try { firstInvalid.focus({preventScroll:false}); } catch(_) { firstInvalid.focus(); }
+  }
+  return ok;
+}
+
+// Limpia los errores de campo a medida que el usuario los corrige
+REQUIRED.forEach(name => {
+  const input = leadForm.querySelector(`[name="${name}"]`);
+  if (!input) return;
+  input.addEventListener('input', () => setFieldError(name, false));
+  input.addEventListener('change', () => setFieldError(name, false));
+});
+
+leadForm.addEventListener('submit', async function(e){
   e.preventDefault();
-  const f = e.target;
-  const get = n => (f.querySelector(`[name="${n}"]`) || {}).value || '';
-  const products = [...f.querySelectorAll('input[name="products"]:checked')].map(i=>i.value).join(', ') || '(ninguno especificado)';
-  const business = get('business_name') || '(sin especificar)';
+  leadFormError.classList.remove('show');
 
-  const fields = [
-    ['Nombre', get('first_name')],
-    ['Apellido', get('last_name')],
-    ['Negocio', business],
-    ['Tipo de Negocio', get('business_type')],
-    ['Correo', get('email')],
-    ['Teléfono', get('phone')],
-    ['Código Postal', get('delivery_zip')],
-    ['Productos de Interés', products],
-    ['Volumen Semanal', get('weekly_volume')],
-    ['Mensaje', get('message')],
-  ];
+  if (!validateForm(leadForm)) return;
 
-  const subject = `Wholesale Inquiry — ${business}`;
-  const body = fields.map(([k,v]) => `${k}:\n${v || '—'}\n`).join('\n');
+  const submitBtn = leadForm.querySelector('.lf-submit');
+  const originalLabel = submitBtn.innerHTML;
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = 'Enviando… <span class="arr">→</span>';
 
-  const mailto = `mailto:Giuseppe@cubanbread.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  window.location.href = mailto;
+  // Construye el payload JSON
+  const get = n => {
+    const el = leadForm.querySelector(`[name="${n}"]`);
+    return el ? (el.value || '').trim() : '';
+  };
+  let recaptchaToken = '';
+  try { recaptchaToken = (typeof grecaptcha !== 'undefined' && grecaptcha.getResponse()) || ''; } catch(_) {}
 
-  // TODO: SalesPower integration — write CSV row to OneDrive/SalesPower/website-leads/inbox.csv
-  //   Once SalesPower hosting + schema is confirmed, POST to the integration endpoint here
-  //   instead of (or in addition to) the mailto fallback. Fields above are normalized to
-  //   the CSV column names (English keys recommended on the integration side).
+  // Incorpora business_type a notes — la tabla de leads de SalesPower no tiene
+  // columna propia para ese campo, y Giuseppe quiere conservar la información junto al lead.
+  const businessType = get('business_type');
+  const messageText  = get('message');
+  const notes = [
+    businessType ? `Tipo de Negocio: ${businessType}` : '',
+    messageText
+  ].filter(Boolean).join('\n\n');
 
-  f.style.display = 'none';
-  const success = document.getElementById('leadSuccess');
-  success.classList.add('show');
-  window.scrollTo({top: success.offsetTop, behavior: 'smooth'});
+  // Atribución de anuncio de primer contacto, capturada en la página de
+  // aterrizaje por assets/site.js. Devuelve todos los campos ('' si se
+  // desconoce), y recurre a todo vacío si site.js nunca cargó — el lead
+  // debe pasar de todas formas.
+  const attr = (typeof window.lsbAttribution === 'function')
+    ? window.lsbAttribution()
+    : {};
+  const attrGet = n => (attr && typeof attr[n] === 'string') ? attr[n] : '';
+
+  const payload = {
+    company:         get('company_name'),   // mapeado: company_name -> company
+    contact_name:    get('contact_name'),
+    email:           get('email'),
+    phone:           get('phone'),
+    city:            get('city'),
+    state:           get('state'),
+    notes:           notes,                  // mapeado: message (+ business_type) -> notes
+    source:          get('source'),          // campo oculto — "Website"
+    recaptcha_token: recaptchaToken,         // el servidor lo verifica, no lo almacena
+
+    // Atribución de Google Ads / campañas — siempre presente, '' si se desconoce
+    gclid:             attrGet('gclid'),
+    gbraid:            attrGet('gbraid'),
+    wbraid:            attrGet('wbraid'),
+    utm_source:        attrGet('utm_source'),
+    utm_medium:        attrGet('utm_medium'),
+    utm_campaign:      attrGet('utm_campaign'),
+    utm_content:       attrGet('utm_content'),
+    utm_term:          attrGet('utm_term'),
+    matchtype:         attrGet('matchtype'),
+    network:           attrGet('network'),
+    attr_captured_at:  attrGet('captured_at'),
+    attr_landing_page: attrGet('landing_page')
+  };
+
+  try {
+    const res = await fetch(LEAD_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+
+    // éxito
+    leadForm.style.display = 'none';
+    leadSuccess.classList.add('show');
+    window.scrollTo({top: leadSuccess.offsetTop, behavior: 'smooth'});
+  } catch(err){
+    console.error('Lead submit failed:', err);
+    leadFormError.classList.add('show');
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalLabel;
+    try { if (typeof grecaptcha !== 'undefined') grecaptcha.reset(); } catch(_) {}
+  }
 });
 </script>
 
