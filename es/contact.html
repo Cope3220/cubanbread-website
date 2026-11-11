@@ -286,12 +286,13 @@
 <section class="contact-grid" data-screen-label="02 Formulario + Giuseppe">
 
   <div>
-    <form id="leadForm" class="lead-form" novalidate>
+    <form id="leadForm" class="lead-form" novalidate data-form-lang="es">
       <h2>Solicitar <em>Precio Mayorista</em></h2>
       <p class="lead-form-sub">7 campos · 60 segundos · Sin lista de precios, sin portal — solo Giuseppe</p>
 
       <!-- hidden source field -->
       <input type="hidden" name="source" value="Website"/>
+      <input type="hidden" name="market" value=""/>
 
       <div class="lf-field">
         <label for="lf-company">Nombre de la Empresa<b>*</b></label>
@@ -398,6 +399,26 @@
           </select>
           <span class="lf-error" data-error-for="state">Por favor seleccione su estado.</span>
         </div>
+      </div>
+
+      <div class="lf-field">
+        <label for="lf-distributor">¿A qué distribuidor le compra?</label>
+        <select id="lf-distributor" name="distributor_named">
+          <option value="">— Opcional —</option>
+          <option value="Sysco">Sysco</option>
+          <option value="US Foods">US Foods</option>
+          <option value="PFG (Performance Food Group)">PFG (Performance Food Group)</option>
+          <option value="GFS (Gordon Food Service)">GFS (Gordon Food Service)</option>
+          <option value="Cheney Brothers">Cheney Brothers</option>
+          <option value="Ben E. Keith">Ben E. Keith</option>
+          <option value="Shamrock Foods">Shamrock Foods</option>
+          <option value="American Food Distributor">American Food Distributor</option>
+          <option value="BakeMark">BakeMark</option>
+          <option value="Nu Vista Foods Group">Nu Vista Foods Group</option>
+          <option value="Northern Haserot">Northern Haserot</option>
+          <option value="Another distributor">Otro distribuidor</option>
+          <option value="Not sure / want to buy direct">No estoy seguro / quiero comprar directo</option>
+        </select>
       </div>
 
       <div class="lf-field">
@@ -632,181 +653,8 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
     item.classList.toggle('open');
   });
 });
-
-/* ============================================================
-   FORMULARIO DE CONTACTO
-   Valida los campos requeridos + reCAPTCHA, luego envía el JSON
-   al endpoint público de captura de leads de SalesPower.
-
-   Endpoint:  POST https://salespower-production.up.railway.app/api/website-lead
-   Owner:     Giuseppe Bua (SalesPower) — público, sin auth, protegido por recaptcha
-
-   Mapeo de campos (sitio web -> tabla de leads de SalesPower):
-     company_name    -> company        (renombrado)
-     contact_name    -> contact_name
-     email           -> email
-     phone           -> phone
-     city            -> city
-     state           -> state
-     business_type   -> incorporado en `notes` (no está en el esquema)
-     message         -> notes          (renombrado; combinado con business_type)
-     source          -> source         (fijo en "Website")
-     recaptcha_token -> verificado en el servidor, no se almacena
-     submitted_at    -> el servidor lo genera automáticamente (no se envía)
-
-   Atribución de Google Ads / campañas (agregado 2026-09):
-     gclid, gbraid, wbraid, utm_source, utm_medium, utm_campaign,
-     utm_content, utm_term, matchtype, network
-                     -> columnas del mismo nombre; siempre se envían, '' si se desconoce
-                        (gbraid/wbraid reemplazan a gclid en clics de app a web en iOS)
-     attr_captured_at  -> cuándo se vieron por primera vez los parámetros del clic (ISO 8601)
-     attr_landing_page -> la URL en la que aterrizó el visitante
-
-   Estos datos vienen del registro de primer contacto que assets/site.js
-   guarda en localStorage en la página donde el anuncio dejó al visitante,
-   NO de la URL de esta página — la mayoría de los leads aterrizan en la
-   página de inicio y convierten aquí.
-============================================================ */
-
-const LEAD_ENDPOINT = 'https://salespower-production.up.railway.app/api/website-lead';
-
-const leadForm = document.getElementById('leadForm');
-const leadSuccess = document.getElementById('leadSuccess');
-const leadFormError = document.getElementById('leadFormError');
-
-// nombres de los campos requeridos (en orden)
-const REQUIRED = ['company_name','contact_name','email','phone','business_type','city','state'];
-
-function setFieldError(name, hasError){
-  const input = leadForm.querySelector(`[name="${name}"]`);
-  if (!input) return;
-  const field = input.closest('.lf-field');
-  if (field) field.classList.toggle('invalid', !!hasError);
-}
-
-function validateForm(f){
-  let firstInvalid = null;
-  let ok = true;
-
-  REQUIRED.forEach(name => {
-    const input = f.querySelector(`[name="${name}"]`);
-    const val = (input && input.value || '').trim();
-    let bad = !val;
-    if (!bad && name === 'email'){
-      bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
-    }
-    setFieldError(name, bad);
-    if (bad){ ok = false; firstInvalid = firstInvalid || input; }
-  });
-
-  // reCAPTCHA
-  const recaptchaWrap = f.querySelector('.lf-recaptcha');
-  let captchaOk = false;
-  try {
-    captchaOk = typeof grecaptcha !== 'undefined' && grecaptcha.getResponse && grecaptcha.getResponse().length > 0;
-  } catch(_) { captchaOk = false; }
-  if (recaptchaWrap) recaptchaWrap.classList.toggle('invalid', !captchaOk);
-  if (!captchaOk){ ok = false; firstInvalid = firstInvalid || recaptchaWrap; }
-
-  if (firstInvalid && firstInvalid.focus) {
-    try { firstInvalid.focus({preventScroll:false}); } catch(_) { firstInvalid.focus(); }
-  }
-  return ok;
-}
-
-// Limpia los errores de campo a medida que el usuario los corrige
-REQUIRED.forEach(name => {
-  const input = leadForm.querySelector(`[name="${name}"]`);
-  if (!input) return;
-  input.addEventListener('input', () => setFieldError(name, false));
-  input.addEventListener('change', () => setFieldError(name, false));
-});
-
-leadForm.addEventListener('submit', async function(e){
-  e.preventDefault();
-  leadFormError.classList.remove('show');
-
-  if (!validateForm(leadForm)) return;
-
-  const submitBtn = leadForm.querySelector('.lf-submit');
-  const originalLabel = submitBtn.innerHTML;
-  submitBtn.disabled = true;
-  submitBtn.innerHTML = 'Enviando… <span class="arr">→</span>';
-
-  // Construye el payload JSON
-  const get = n => {
-    const el = leadForm.querySelector(`[name="${n}"]`);
-    return el ? (el.value || '').trim() : '';
-  };
-  let recaptchaToken = '';
-  try { recaptchaToken = (typeof grecaptcha !== 'undefined' && grecaptcha.getResponse()) || ''; } catch(_) {}
-
-  // Incorpora business_type a notes — la tabla de leads de SalesPower no tiene
-  // columna propia para ese campo, y Giuseppe quiere conservar la información junto al lead.
-  const businessType = get('business_type');
-  const messageText  = get('message');
-  const notes = [
-    businessType ? `Tipo de Negocio: ${businessType}` : '',
-    messageText
-  ].filter(Boolean).join('\n\n');
-
-  // Atribución de anuncio de primer contacto, capturada en la página de
-  // aterrizaje por assets/site.js. Devuelve todos los campos ('' si se
-  // desconoce), y recurre a todo vacío si site.js nunca cargó — el lead
-  // debe pasar de todas formas.
-  const attr = (typeof window.lsbAttribution === 'function')
-    ? window.lsbAttribution()
-    : {};
-  const attrGet = n => (attr && typeof attr[n] === 'string') ? attr[n] : '';
-
-  const payload = {
-    company:         get('company_name'),   // mapeado: company_name -> company
-    contact_name:    get('contact_name'),
-    email:           get('email'),
-    phone:           get('phone'),
-    city:            get('city'),
-    state:           get('state'),
-    notes:           notes,                  // mapeado: message (+ business_type) -> notes
-    source:          get('source'),          // campo oculto — "Website"
-    recaptcha_token: recaptchaToken,         // el servidor lo verifica, no lo almacena
-
-    // Atribución de Google Ads / campañas — siempre presente, '' si se desconoce
-    gclid:             attrGet('gclid'),
-    gbraid:            attrGet('gbraid'),
-    wbraid:            attrGet('wbraid'),
-    utm_source:        attrGet('utm_source'),
-    utm_medium:        attrGet('utm_medium'),
-    utm_campaign:      attrGet('utm_campaign'),
-    utm_content:       attrGet('utm_content'),
-    utm_term:          attrGet('utm_term'),
-    matchtype:         attrGet('matchtype'),
-    network:           attrGet('network'),
-    attr_captured_at:  attrGet('captured_at'),
-    attr_landing_page: attrGet('landing_page')
-  };
-
-  try {
-    const res = await fetch(LEAD_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-
-    // éxito
-    leadForm.style.display = 'none';
-    leadSuccess.classList.add('show');
-    window.scrollTo({top: leadSuccess.offsetTop, behavior: 'smooth'});
-  } catch(err){
-    console.error('Lead submit failed:', err);
-    leadFormError.classList.add('show');
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = originalLabel;
-    try { if (typeof grecaptcha !== 'undefined') grecaptcha.reset(); } catch(_) {}
-  }
-});
 </script>
-
+<script src="../assets/lead-form.js?v=1"></script>
 <script src="../assets/site.js?v=5"></script>
 </body>
 </html>

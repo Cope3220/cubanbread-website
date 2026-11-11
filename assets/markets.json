@@ -1,0 +1,124 @@
+{
+  "as_of": "2026-11-11",
+  "built": "2026-11-11",
+  "markets": [
+    {
+      "slug": "atlanta",
+      "name": "Atlanta",
+      "area": "Atlanta, GA",
+      "dcs": [
+        {
+          "name": "PFS Atlanta",
+          "family": "PFS",
+          "city": "Atlanta",
+          "item_codes": {}
+        },
+        {
+          "name": "Sysco Atlanta",
+          "family": "Sysco",
+          "city": "Atlanta",
+          "item_codes": {}
+        },
+        {
+          "name": "US Foods Atlanta",
+          "family": "US Foods",
+          "city": "Atlanta",
+          "item_codes": {}
+        }
+      ],
+      "products": []
+    },
+    {
+      "slug": "carolinas",
+      "name": "Carolinas",
+      "area": "Charlotte and Raleigh, NC/SC",
+      "dcs": [
+        {
+          "name": "Sysco Charlotte",
+          "family": "Sysco",
+          "city": "Charlotte",
+          "item_codes": {}
+        },
+        {
+          "name": "US Foods Fort Mill",
+          "family": "US Foods",
+          "city": "Fort Mill",
+          "item_codes": {}
+        },
+        {
+          "name": "US Foods Raleigh",
+          "family": "US Foods",
+          "city": "Raleigh",
+          "item_codes": {}
+        },
+        {
+          "name": "Cheney Brothers Statesville",
+          "family": "Cheney Brothers",
+          "city": "Statesville",
+          "item_codes": {}
+        }
+      ],
+      "products": []
+    },
+    {
+      "slug": "houston",
+      "name": "Houston",
+      "area": "Houston, TX",
+      "dcs": [
+        {
+          "name": "PFS Houston",
+          "family": "PFS",
+          "city": "Houston",
+          "item_codes": {}
+        }
+      ],
+      "products": []
+    },
+    {
+      "slug": "knoxville",
+      "name": "Knoxville",
+      "area": "Knoxville, TN",
+      "dcs": [
+        {
+          "name": "PFS Knoxville",
+          "family": "PFS",
+          "city": "Knoxville",
+          "item_codes": {}
+        },
+        {
+          "name": "Sysco Knoxville",
+          "family": "Sysco",
+          "city": "Knoxville",
+          "item_codes": {}
+        },
+        {
+          "name": "US Foods Knoxville",
+          "family": "US Foods",
+          "city": "Knoxville",
+          "item_codes": {}
+        }
+      ],
+      "products": []
+    },
+    {
+      "slug": "seattle",
+      "name": "Seattle",
+      "area": "Seattle, WA",
+      "dcs": [
+        {
+          "name": "Sysco Seattle",
+          "family": "Sysco",
+          "city": "Seattle",
+          "item_codes": {}
+        },
+        {
+          "name": "US Foods Seattle-North",
+          "family": "US Foods",
+          "city": "Seattle-North",
+          "item_codes": {}
+        }
+      ],
+      "products": []
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "_about": "Distributor-DC invoice activity from a read-only Business Central read (More Bakery, LSSalesInvoiceHeader, distributor master customers: Sysco, US Foods, PFG, PFS, Cheney), grouped by ship-to CODE not ship-to name, 2025-11-11 through 2026-11-11. Read 2026-11-11 through the BC Query connector (the documented read-only path). Contains no dollar amounts and no ship-to codes. invoices_12mo_min is the verified lower bound (the listing rule only needs >= 2); last_invoice is exact. PFG-master DCs are shown as 'PFS <city>' (Giuseppe and Kevin, 2026-11-10). To refresh: repeat the BC read, update this file, rerun scripts/build-markets.py and scripts/build-pages.py.",
+  "as_of": "2026-11-11",
+  "dcs": [
+    {"market": "atlanta",   "family": "PFS",      "city": "Atlanta",       "invoices_12mo_min": 2, "last_invoice": "2026-11-11"},
+    {"market": "atlanta",   "family": "Sysco",    "city": "Atlanta",       "invoices_12mo_min": 2, "last_invoice": "2026-10-22"},
+    {"market": "atlanta",   "family": "US Foods", "city": "Atlanta",       "invoices_12mo_min": 2, "last_invoice": "2026-10-09"},
+    {"market": "carolinas", "family": "US Foods", "city": "Fort Mill",     "invoices_12mo_min": 2, "last_invoice": "2026-11-06"},
+    {"market": "carolinas", "family": "Cheney Brothers", "city": "Statesville", "invoices_12mo_min": 2, "last_invoice": "2026-10-22"},
+    {"market": "carolinas", "family": "US Foods", "city": "Raleigh",       "invoices_12mo_min": 2, "last_invoice": "2026-10-23"},
+    {"market": "carolinas", "family": "Sysco",    "city": "Charlotte",     "invoices_12mo_min": 2, "last_invoice": "2026-06-19"},
+    {"market": "houston",   "family": "PFS",      "city": "Houston",       "invoices_12mo_min": 2, "last_invoice": "2026-10-30"},
+    {"market": "knoxville", "family": "PFS",      "city": "Knoxville",     "invoices_12mo_min": 2, "last_invoice": "2026-09-25"},
+    {"market": "knoxville", "family": "Sysco",    "city": "Knoxville",     "invoices_12mo_min": 2, "last_invoice": "2026-10-23"},
+    {"market": "knoxville", "family": "US Foods", "city": "Knoxville",     "invoices_12mo_min": 2, "last_invoice": "2026-09-25"},
+    {"market": "seattle",   "family": "Sysco",    "city": "Seattle",       "invoices_12mo_min": 2, "last_invoice": "2026-10-30"},
+    {"market": "seattle",   "family": "US Foods", "city": "Seattle-North", "invoices_12mo_min": 2, "last_invoice": "2026-11-06"}
+  ]
+}
