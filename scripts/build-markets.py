@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Build assets/markets.json for the wholesale market pages.
 
-Inputs (both committed beside this script):
-  scripts/dc-activity.json  DC invoice activity from a read-only Business Central read
+Inputs:
+  dc-activity.json          DC invoice activity from a read-only Business Central read.
+                            NOT committed (repo is public and served by GitHub Pages).
+                            Looked up at env DC_ACTIVITY, else ../cubanbread-build-data/.
   scripts/item-codes.json   item codes per DC from SalesPower `distributors`
 
 Listing rule (Copeland, 2026-11-11): a DC appears only if BC shows at least 2
@@ -50,7 +52,8 @@ def main():
     args = ap.parse_args()
     today = date.fromisoformat(args.today)
 
-    act = json.load(open(os.path.join(HERE, 'dc-activity.json'), encoding='utf-8'))
+    act_path = os.environ.get('DC_ACTIVITY') or os.path.join(os.path.dirname(ROOT), 'cubanbread-build-data', 'dc-activity.json')
+    act = json.load(open(act_path, encoding='utf-8'))
     codes_all = json.load(open(os.path.join(HERE, 'item-codes.json'), encoding='utf-8')).get('codes', {})
 
     out = {'as_of': act['as_of'], 'built': today.isoformat(), 'markets': []}
