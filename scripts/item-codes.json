@@ -1,0 +1,4 @@
+{
+  "_about": "Item codes per distributor DC, read from SalesPower `distributors` (code_* columns). NOT FILLED YET: the read of the production table was not available to the build session (2026-11-11). Add entries keyed by the DC display name, e.g. \"Sysco Atlanta\": {\"18_cuban\": \"<code>\", \"18_honey_wheat\": \"\", \"36_cuban\": \"\", \"8_media_noche\": \"\", \"4_coca_buns\": \"\", \"8_hoagie_rolls\": \"\"}. Only non-empty values are used. A DC with no entry shows 'Ask your <DC> rep for La Segunda Cuban bread' and never a guessed number. Then rerun scripts/build-markets.py and scripts/build-pages.py.",
+  "codes": {}
+}

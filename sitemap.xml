@@ -81,4 +81,44 @@
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://cubanbread.com/wholesale/atlanta.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://cubanbread.com/wholesale/atlanta.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cubanbread.com/wholesale/atlanta.html"/>
+  </url>
+  <url>
+    <loc>https://cubanbread.com/wholesale/carolinas.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://cubanbread.com/wholesale/carolinas.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cubanbread.com/wholesale/carolinas.html"/>
+  </url>
+  <url>
+    <loc>https://cubanbread.com/wholesale/houston.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://cubanbread.com/wholesale/houston.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cubanbread.com/wholesale/houston.html"/>
+  </url>
+  <url>
+    <loc>https://cubanbread.com/wholesale/knoxville.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://cubanbread.com/wholesale/knoxville.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cubanbread.com/wholesale/knoxville.html"/>
+  </url>
+  <url>
+    <loc>https://cubanbread.com/wholesale/seattle.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://cubanbread.com/wholesale/seattle.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cubanbread.com/wholesale/seattle.html"/>
+  </url>
 </urlset>
