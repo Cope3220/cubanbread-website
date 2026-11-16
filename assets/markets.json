@@ -11,22 +11,50 @@
           "name": "PFS Atlanta",
           "family": "PFS",
           "city": "Atlanta",
-          "item_codes": {}
+          "item_codes": {
+            "18_cuban": "886369",
+            "8_media_noche": "371225",
+            "4_coca_buns": "361192"
+          }
         },
         {
           "name": "Sysco Atlanta",
           "family": "Sysco",
           "city": "Atlanta",
-          "item_codes": {}
+          "item_codes": {
+            "18_cuban": "8556607",
+            "8_media_noche": "0786234",
+            "4_coca_buns": "1233471"
+          }
         },
         {
           "name": "US Foods Atlanta",
           "family": "US Foods",
           "city": "Atlanta",
-          "item_codes": {}
+          "item_codes": {
+            "18_cuban": "9375387",
+            "8_media_noche": "9714783",
+            "4_coca_buns": "2585123"
+          }
         }
       ],
-      "products": []
+      "products": [
+        {
+          "key": "18_cuban",
+          "name": "Cuban Bread, 18\"",
+          "anchor": "cuban-bread"
+        },
+        {
+          "key": "8_media_noche",
+          "name": "Media Noche, 8\"",
+          "anchor": "media-noche"
+        },
+        {
+          "key": "4_coca_buns",
+          "name": "Coca Buns, 4\"",
+          "anchor": "coca-buns"
+        }
+      ]
     },
     {
       "slug": "carolinas",
@@ -37,28 +65,60 @@
           "name": "Sysco Charlotte",
           "family": "Sysco",
           "city": "Charlotte",
-          "item_codes": {}
+          "item_codes": {
+            "18_cuban": "8556607",
+            "8_media_noche": "0786234",
+            "4_coca_buns": "1233471"
+          }
         },
         {
           "name": "US Foods Fort Mill",
           "family": "US Foods",
           "city": "Fort Mill",
-          "item_codes": {}
+          "item_codes": {
+            "18_cuban": "9375387",
+            "8_media_noche": "9714783",
+            "4_coca_buns": "2585123"
+          }
         },
         {
           "name": "US Foods Raleigh",
           "family": "US Foods",
           "city": "Raleigh",
-          "item_codes": {}
+          "item_codes": {
+            "18_cuban": "9375387",
+            "8_media_noche": "9714783",
+            "4_coca_buns": "2585123"
+          }
         },
         {
           "name": "Cheney Brothers Statesville",
           "family": "Cheney Brothers",
           "city": "Statesville",
-          "item_codes": {}
+          "item_codes": {
+            "18_cuban": "302022",
+            "8_media_noche": "798849",
+            "4_coca_buns": "312232"
+          }
         }
       ],
-      "products": []
+      "products": [
+        {
+          "key": "18_cuban",
+          "name": "Cuban Bread, 18\"",
+          "anchor": "cuban-bread"
+        },
+        {
+          "key": "8_media_noche",
+          "name": "Media Noche, 8\"",
+          "anchor": "media-noche"
+        },
+        {
+          "key": "4_coca_buns",
+          "name": "Coca Buns, 4\"",
+          "anchor": "coca-buns"
+        }
+      ]
     },
     {
       "slug": "houston",
@@ -69,10 +129,30 @@
           "name": "PFS Houston",
           "family": "PFS",
           "city": "Houston",
-          "item_codes": {}
+          "item_codes": {
+            "18_cuban": "886369",
+            "8_media_noche": "371225",
+            "4_coca_buns": "361192"
+          }
         }
       ],
-      "products": []
+      "products": [
+        {
+          "key": "18_cuban",
+          "name": "Cuban Bread, 18\"",
+          "anchor": "cuban-bread"
+        },
+        {
+          "key": "8_media_noche",
+          "name": "Media Noche, 8\"",
+          "anchor": "media-noche"
+        },
+        {
+          "key": "4_coca_buns",
+          "name": "Coca Buns, 4\"",
+          "anchor": "coca-buns"
+        }
+      ]
     },
     {
       "slug": "knoxville",
@@ -83,22 +163,50 @@
           "name": "PFS Knoxville",
           "family": "PFS",
           "city": "Knoxville",
-          "item_codes": {}
+          "item_codes": {
+            "18_cuban": "886369",
+            "8_media_noche": "371225",
+            "4_coca_buns": "361192"
+          }
         },
         {
           "name": "Sysco Knoxville",
           "family": "Sysco",
           "city": "Knoxville",
-          "item_codes": {}
+          "item_codes": {
+            "18_cuban": "8556607",
+            "8_media_noche": "0786234",
+            "4_coca_buns": "1233471"
+          }
         },
         {
           "name": "US Foods Knoxville",
           "family": "US Foods",
           "city": "Knoxville",
-          "item_codes": {}
+          "item_codes": {
+            "18_cuban": "9375387",
+            "8_media_noche": "9714783",
+            "4_coca_buns": "2585123"
+          }
         }
       ],
-      "products": []
+      "products": [
+        {
+          "key": "18_cuban",
+          "name": "Cuban Bread, 18\"",
+          "anchor": "cuban-bread"
+        },
+        {
+          "key": "8_media_noche",
+          "name": "Media Noche, 8\"",
+          "anchor": "media-noche"
+        },
+        {
+          "key": "4_coca_buns",
+          "name": "Coca Buns, 4\"",
+          "anchor": "coca-buns"
+        }
+      ]
     },
     {
       "slug": "seattle",
@@ -109,16 +217,40 @@
           "name": "Sysco Seattle",
           "family": "Sysco",
           "city": "Seattle",
-          "item_codes": {}
+          "item_codes": {
+            "18_cuban": "8556607",
+            "8_media_noche": "0786234",
+            "4_coca_buns": "1233471"
+          }
         },
         {
           "name": "US Foods Seattle-North",
           "family": "US Foods",
           "city": "Seattle-North",
-          "item_codes": {}
+          "item_codes": {
+            "18_cuban": "9375387",
+            "8_media_noche": "9714783",
+            "4_coca_buns": "2585123"
+          }
         }
       ],
-      "products": []
+      "products": [
+        {
+          "key": "18_cuban",
+          "name": "Cuban Bread, 18\"",
+          "anchor": "cuban-bread"
+        },
+        {
+          "key": "8_media_noche",
+          "name": "Media Noche, 8\"",
+          "anchor": "media-noche"
+        },
+        {
+          "key": "4_coca_buns",
+          "name": "Coca Buns, 4\"",
+          "anchor": "coca-buns"
+        }
+      ]
     }
   ]
 }
