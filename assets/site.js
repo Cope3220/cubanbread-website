@@ -142,6 +142,7 @@
     'utm_term',
     'matchtype',
     'network',
+    'ad',      // Google Ads {creative}: the specific ad ID
     // Google sends gbraid/wbraid in place of gclid for iOS app-to-web
     // clicks, where ATT blocks the gclid. Same job, different param.
     'gbraid',
