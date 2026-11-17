@@ -20,3 +20,10 @@
 - Merged `feat/wholesale-markets` to main as b98fb8b (pushed once). Live over HTTPS, all 200: `/wholesale/{atlanta,carolinas,houston,knoxville,seattle}.html` each with its "Serving <market> restaurants through" line; `/sitemap.xml` lists the five; `/contact.html` loads `assets/lead-form.js` (200); home 200. `cubanbread.com/scripts/dc-activity.json` is 404 (not published). Pages never serve `/CNAME` (404 is normal); the repo `CNAME` still reads cubanbread.com and the site answers on that domain.
 - Verified locally, not live: attribution payload (`?gclid=TEST123&utm_campaign=x` on atlanta gives gclid, utm_campaign, market in the payload) via `lsbBuildLeadPayload()`. **No production form submit was made.** Houston lists one DC (PFS Houston), kept by Copeland's decision.
 - dc-activity.json (DC invoice counts/last-invoice dates, no dollars or codes) was in public history at e1314de; accepted by Copeland 2026-11-13; build data now lives outside the repo in C:\dev\cubanbread-build-data.
+
+## Ad ID capture (site) 2026-11-17
+
+- Merged `feat/ad-id-capture` to main @ 57f7cab (feature commit 1159bd8) on Copeland's yes; one push to main.
+- Live check: `https://cubanbread.com/assets/site.js` contains `'ad'` and `https://cubanbread.com/assets/lead-form.js` contains `ad_id` (Pages updated within about 90 seconds). `CNAME` still `cubanbread.com`.
+- Verified locally only, no production submit: `?gclid=TEST123&utm_campaign=x&ad=712345678901` gives payload `ad_id: "712345678901"` with all old fields unchanged; an old `lsb_attr` record without `ad` gives `ad_id: ""`, no error; homepage loads clean.
+- Server half: lasegunda-salespower `docs/phases/ads-ad-id-capture.md`. Phase doc: `docs/phases/ads-ad-id-capture.md`.
