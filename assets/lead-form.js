@@ -23,6 +23,7 @@
      gclid, gbraid, wbraid, utm_source, utm_medium, utm_campaign,
      utm_content, utm_term, matchtype, network
                        -> same-named columns; always sent, '' when unknown
+     ad_id             -> the ad URL param (Google {creative}); '' when unknown
      attr_captured_at  -> when the click params were first seen (ISO 8601)
      attr_landing_page -> the URL they arrived on
    These come from the first-touch record that assets/site.js writes to
@@ -142,6 +143,7 @@
       utm_term:          attrGet('utm_term'),
       matchtype:         attrGet('matchtype'),
       network:           attrGet('network'),
+      ad_id:             attrGet('ad'),
       attr_captured_at:  attrGet('captured_at'),
       attr_landing_page: attrGet('landing_page')
     };
